@@ -8,22 +8,23 @@ def user_exists(form, field):
     # Checking if user exists
     email = field.data
     user = User.query.filter(User.email == email).first()
-    if not user:
-        raise ValidationError('Email provided not found.')
+    if user:
+        raise ValidationError('Email address is already in use.')
 
 
-def password_matches(form, field):
-    # Checking if password matches
-    password = field.data
-    email = form.data['email']
-    user = User.query.filter(User.email == email).first()
-    if not user:
-        raise ValidationError('No such user exists.')
-    if not user.check_password(password):
-        raise ValidationError('Password was incorrect.')
+def username_exists(form, field):
+    # Checking if username is already in use
+    username = field.data
+    user = User.query.filter(User.username == username).first()
+    if user:
+        raise ValidationError('Username is already in use.')
 
 
-class LoginForm(FlaskForm):
+class SignUpForm(FlaskForm):
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    username = StringField(
+        'username', validators=[DataRequired(), username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[
-                           DataRequired(), password_matches])
+    password = StringField('password', validators=[DataRequired()])
+    # profile_image_url = StringField('profile_image_url', validators=[DataRequired()])
