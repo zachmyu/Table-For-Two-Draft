@@ -133,28 +133,28 @@ const initialState = {}
 const reviewsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case READ_SINGLE_Review:
+        case READ_SINGLE_REVIEW:
             newState = { ...state };
             newState.current = action.payload;
             return newState;
 
-        case READ_ALL_ReviewS:
+        case READ_ALL_REVIEWS:
             newState = { ...action.payload };
             return newState;
 
-        case CREATE_Review:
+        case CREATE_REVIEW:
             newState = Object.assign({}, state);
             newState[action.payload.id] = action.payload;
             return newState;
 
-        case UPDATE_Review:
+        case UPDATE_REVIEW:
             newState = {
                 ...state,
                 [action.payload.id]: action.payload
             };
             return newState;
 
-        case DELETE_Review:
+        case DELETE_REVIEW:
             newState = { ...state };
             delete newState[action.payload];
             return newState;
