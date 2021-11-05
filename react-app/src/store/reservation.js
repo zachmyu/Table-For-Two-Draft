@@ -20,12 +20,12 @@ const addReservation = reservation => ({
     payload: reservation
 });
 
-const updateReservation = reservation => ({
+const changeReservation = reservation => ({
     type: UPDATE_RESERVATION,
     payload: reservation
 });
 
-const deleteReservation = reservation_id => ({
+const removeReservation = reservation_id => ({
     type: DELETE_RESERVATION,
     payload: reservation_id
 });
@@ -97,7 +97,7 @@ export const updateReservation = reservationData => async dispatch => {
     const data = await res.json();
 
     if (res.ok) {
-        dispatch(updateReservation(data))
+        dispatch(changeReservation(data))
     } else {
         throw res;
     };
@@ -110,7 +110,7 @@ export const deleteReservation = reservationId => async dispatch => {
     })
 
     if (res.ok) {
-        dispatch(deleteReservation(reservationId))
+        dispatch(removeReservation(reservationId))
     } else {
         throw res;
     };
