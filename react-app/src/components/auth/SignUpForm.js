@@ -1,94 +1,136 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { Modal } from '../../context/Modal';
 import { signUp } from '../../store/session';
+import './SignUpForm.css';
 
-const SignUpForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
+function SignUpFormModal() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [showModal, setShowModal] = useState(false);
+    const [errors, setErrors] = useState([]);
+    const [first_name, setFirstName] = useState('');
+    const [last_name, setLastname] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState('');
+    const [profile_image_url, setProfileImg] = useState('');
+    const user = useSelector(state => state.session.user);
 
-  const onSignUp = async (e) => {
-    e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+    const onSignUp = async (e) => {
+        e.preventDefault();
+        if (password === repeatPassword) {
+            const data = await dispatch(signUp(first_name, last_name, username, email, password, profile_image_url));
+
+            if (data?.errors) {
+                setErrors(data?.errors)
+            }
+        }
+    };
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        if (file) setProfileImg(file)
     }
-  };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+    if (user) {
+        return history.push('/');
+    }
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+    return (
+        <>
+            <button className="navbar-button" onClick={() => setShowModal(true)}>Sign Up</button>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <form className='signUpForm-container' onSubmit={onSignUp}>
+                        <ul className="form-errors">
+                            {errors?.map((error, ind) => <li key={ind}>{error}</li>)}
+                        </ul>
+                        <h2>Welcome to Table For Two!</h2>
+                        <div className="signUpForm--element--container">
+                            <input
+                                className="signUpForm--element"
+                                name='first_name'
+                                type='text'
+                                placeholder='First Name *'
+                                value={first_name}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div className="signUpForm--element--container">
+                            <input
+                                className="signUpForm--element"
+                                name='last_name'
+                                type='text'
+                                placeholder='Last Name *'
+                                value={last_name}
+                                onChange={(e) => setLastname(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div className="signUpForm--element--container">
+                            <input
+                                className="signUpForm--element"
+                                name='username'
+                                type='text'
+                                placeholder='Username *'
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div className="signUpForm--element--container">
+                            <input
+                                className="signUpForm--element"
+                                name='email'
+                                type='text'
+                                placeholder='Email *'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div className="signUpForm--element--container">
+                            <input
+                                className="signUpForm--element"
+                                name='password'
+                                type='password'
+                                placeholder='Enter Password *'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div className="signUpForm--element--container">
+                            <input
+                                className="signUpForm--element"
+                                name='repeat_password'
+                                type='password'
+                                placeholder='Re-enter Password *'
+                                value={repeatPassword}
+                                onChange={(e) => setRepeatPassword(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div className="profImgContainer--element">
+                            <h4 id='profPicTitle'>Upload a Profile Picture</h4>
+                            <input
+                                className="profImgUpload--element"
+                                type="file"
+                                onChange={updateImage}
+                            />
+                        </div>
+                        <div className="login__button--container">
+                            <button className="button2" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </Modal>
+            )}
+        </>
+    );
+}
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
-  if (user) {
-    return <Redirect to='/' />;
-  }
-
-  return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
-  );
-};
-
-export default SignUpForm;
+export default SignUpFormModal;
