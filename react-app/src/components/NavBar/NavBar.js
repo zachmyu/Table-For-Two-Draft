@@ -48,7 +48,7 @@ const NavBar = ({ loaded }) => {
     return (
         <div className='navbar__container'>
             <NavLink className='navbar__logo' exact to="/">
-                <img src="/logo.png" className="homepageLogo" alt="homepageLogo"></img>
+                <img src="/images/logo.png" className="homepageLogo" alt="homepageLogo"></img>
             </NavLink>
             <div className='session-container' >
                 {loaded && sessionLinks}
