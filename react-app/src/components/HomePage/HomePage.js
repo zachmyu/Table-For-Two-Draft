@@ -8,8 +8,9 @@ import { getAllVenues } from '../../store/venue'
 import "./HomePage.css";
 
 function HomePage({ setResults }) {
-    const venues = useSelector(state => state?.venues)
-    // const venueArray = Object.values(venues)
+    const venues = useSelector(state => state?.venue.venues)
+    const venueArray = Object.values(venues)
+    console.log(venues)
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
     const history = useHistory()
@@ -49,8 +50,8 @@ function HomePage({ setResults }) {
                 </div>
             </div>
             <div className='splash-venues-container'>
-                {/* {venueArray.map(venue => (
-                    <a href={`/venues/${venue.id}`} id={venue.id}>
+                {venueArray.map(venue => (
+                    <a href={`/venues/${venue.id}`} key={venue.id} id={venue.id}>
                         <div className='splash-venue-card' >
                             <img src={venue.image_url} className='splash-venue-pix' alt='{venue.name}' />
                             <div className='splash-venue-description'>
@@ -60,7 +61,7 @@ function HomePage({ setResults }) {
                             </div>
                         </div>
                     </a>
-                ))} */}
+                ))}
             </div>
         </>
 
