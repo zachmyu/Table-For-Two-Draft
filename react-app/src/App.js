@@ -10,7 +10,7 @@ import NavBar from './components/NavBar/NavBar';
 // import DropDown from './components/DropDown'
 // import GoogleMap from './components/Venue/GoogleMap'
 // import Venue from './components/Venue'
-// import HomePage from './components/HomePage'
+import HomePage from './components/HomePage/HomePage'
 // import Search from './components/Search'
 import Footer from './components/NavBar/Footer';
 
@@ -52,9 +52,9 @@ function App() {
                     {/* <Route exact path='/search'>
                         <Search results={results} />
                     </Route> */}
-                    {/* <Route exact path='/' >
+                    <Route exact path='/' >
                         <HomePage setResults={setResults} />
-                    </Route> */}
+                    </Route>
                     {/* <ProtectedRoute exact path='/users'>
                         <UsersList />
                     </ProtectedRoute> */}
