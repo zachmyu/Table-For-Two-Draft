@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import NavBar from './components/NavBar/NavBar';
-// import Footer from './components/NavBar/Footer';
+import { authenticate } from './store/session';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import NavBar from './components/NavBar/NavBar';
 // import UsersList from './components/UsersList';
 // import User from './components/User';
 // import Calendar from './components/Calendar'
 // import DropDown from './components/DropDown'
 // import GoogleMap from './components/Venue/GoogleMap'
 // import Venue from './components/Venue'
-import { authenticate } from './store/session';
 // import HomePage from './components/HomePage'
 // import Search from './components/Search'
+import Footer from './components/NavBar/Footer';
 
 
 
@@ -63,7 +63,7 @@ function App() {
                     </ProtectedRoute> */}
                 </Switch>
             )}
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 }
