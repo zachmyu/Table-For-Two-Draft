@@ -1,5 +1,5 @@
 .splash-container {
-	background-image: url("splash_background.jpg");
+	/* background-image: url("splash_background.jpg"); */
 	display: flex;
 	align-items: center;
 	flex-direction: column;
