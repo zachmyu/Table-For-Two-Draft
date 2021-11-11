@@ -155,7 +155,8 @@ const venuesReducer = (state = initialState, action) => {
             return newState;
 
         case READ_ALL_VENUES:
-            newState = { ...action.payload };
+            console.log("RYAAAAN", action)
+            newState = { ...action.payload.venues };
             return newState;
 
         case CREATE_VENUE:

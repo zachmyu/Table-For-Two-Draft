@@ -8,9 +8,8 @@ import { getAllVenues } from '../../store/venue'
 import "./HomePage.css";
 
 function HomePage({ setResults }) {
-    const venues = useSelector(state => state?.venue.venues)
+    const venues = useSelector(state => state?.venue)
     const venueArray = Object.values(venues)
-    console.log(venues)
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
     const history = useHistory()
@@ -21,11 +20,11 @@ function HomePage({ setResults }) {
 
     let venueForSearchBar = []
     const handleClick = () => {
-        // const venueFilter = venueArray.filter((venue) => venue.name.toLowerCase().includes(search.toLowerCase()))
-        // venueForSearchBar.push(venueFilter)
-        // setResults(venueForSearchBar)
-        // setSearch('')
-        // return history.push("/search")
+        const venueFilter = venueArray.filter((venue) => venue.name.toLowerCase().includes(search.toLowerCase()))
+        venueForSearchBar.push(venueFilter)
+        setResults(venueForSearchBar)
+        setSearch('')
+        return history.push("/search")
     }
 
     return (
