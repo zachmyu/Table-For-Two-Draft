@@ -44,7 +44,7 @@ function HomePage({ setResults }) {
                             onChange={(e) => setSearch(e.target.value)}
                             required
                         ></input>
-                        <button className="splash-button">Let"s go</button>
+                        <button className="splash-button">Let's go</button>
                     </form>
                 </div>
             </div>
