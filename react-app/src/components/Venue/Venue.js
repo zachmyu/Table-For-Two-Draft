@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleVenue } from '../../store/venue'
-import { updateReview, deleteReview } from '../../store/reviews'
+import { updateReview, deleteReview } from '../../store/review'
 import { useParams, useHistory } from "react-router-dom";
-import ReviewFormModal from '../ReviewFormModal/ReviewCreateForm'
-import ReservationForm from '../Reservations/ReservationForm'
 import { createFavorites, deleteFavorites } from '../../store/favorite'
+// import ReviewFormModal from '../ReviewFormModal/ReviewCreateForm'
+// import ReservationForm from '../Reservations/ReservationForm'
 import './Venue.css'
-import '../ReviewFormModal/ReviewForm.css'
+// import '../ReviewFormModal/ReviewForm.css'
 
 
 function Venue() {
@@ -186,7 +186,7 @@ function Venue() {
                 ))
                 }
                 <hr />
-                <div><ReviewFormModal venue_id={id} /></div>
+                {/* <div><ReviewFormModal venue_id={id} /></div> */}
             </div >
         )
     } else {
@@ -212,10 +212,10 @@ function Venue() {
                 {favoriteButton}
                 <div className='container-reservation'>
                     <h3>Reservations</h3>
-                    <ReservationForm venue_id={id}
+                    {/* <ReservationForm venue_id={id}
                         venue={venue}
                         reservations={reservations}>
-                    </ReservationForm>
+                    </ReservationForm> */}
                 </div>
             </>
         )
