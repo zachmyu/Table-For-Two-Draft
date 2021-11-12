@@ -9,7 +9,7 @@ import NavBar from './components/NavBar/NavBar';
 // import Calendar from './components/Calendar'
 // import DropDown from './components/DropDown'
 // import GoogleMap from './components/Venue/GoogleMap'
-// import Venue from './components/Venue'
+import Venue from './components/Venue/Venue';
 import HomePage from './components/HomePage/HomePage'
 // import Search from './components/Search'
 import Footer from './components/NavBar/Footer';
@@ -46,9 +46,9 @@ function App() {
                     {/* <Route exact path='/google-map'>
                         <GoogleMap></GoogleMap>
                     </Route> */}
-                    {/* <Route exact path='/venues/:id'>
+                    <Route exact path='/venues/:id'>
                         <Venue></Venue>
-                    </Route> */}
+                    </Route>
                     {/* <Route exact path='/search'>
                         <Search results={results} />
                     </Route> */}
