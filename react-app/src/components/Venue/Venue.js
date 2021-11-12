@@ -25,7 +25,7 @@ function Venue() {
 
     const user = useSelector(state => state.session.user)
     const reservations = useSelector(state => state.reservations)
-    const venue = useSelector(state => state?.venues.current)
+    const venue = useSelector(state => state?.venue.current)
     const userFavorites = user ? Object.values(user?.favorites) : null
     const reviewsInfo = venue ? Object.values(venue?.reviews) : null
     const faveFind = userFavorites?.find(favorite => favorite?.venue_id === id)
@@ -98,7 +98,7 @@ function Venue() {
                             favorite?.venue_id === id
                         ))?.id)
                     )}>
-                    <i class="fas fa-heart" />
+                    <i classNames="fas fa-heart" />
                 </button >
             </div>
         )
@@ -110,7 +110,7 @@ function Venue() {
                     disabled={oneClickBtn}
                     id={buttonAddFave}
                     onClick={addFave}>
-                    <i class="fas fa-heart" />
+                    <i classNames="fas fa-heart" />
                 </button>
             </div>
         )
@@ -245,15 +245,15 @@ function Venue() {
                             </div>
                             <div className='container_venue-details'>
                                 <div className='venue-details-element'>
-                                    <i class="fas fa-star"></i>
+                                    <i classNames="fas fa-star"></i>
                                     <span>{handleRating()}</span>
                                 </div>
                                 <div className='venue-details-element'>
-                                    <i class="far fa-comment-alt"> </i>
+                                    <i classNames="far fa-comment-alt"> </i>
                                     <span>{(Object.values(venue.reviews)).length} reviews</span>
                                 </div>
                                 <div className='venue-details-element'>
-                                    <i class="fas fa-money-bill-wave"></i>
+                                    <i classNames="fas fa-money-bill-wave"></i>
                                     <span>Price Per Couple: ${venue.price}</span>
                                 </div>
                             </div>
