@@ -5,7 +5,7 @@ import { authenticate } from './store/session';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import NavBar from './components/NavBar/NavBar';
 // import UsersList from './components/UsersList';
-// import User from './components/User';
+import User from './components/User/User';
 // import Calendar from './components/Calendar'
 // import DropDown from './components/DropDown'
 // import GoogleMap from './components/Venue/GoogleMap'
@@ -55,9 +55,9 @@ function App() {
                     <Route exact path='/' >
                         <HomePage setResults={setResults} />
                     </Route>
-                    {/* <ProtectedRoute exact path='/users'>
+                    <ProtectedRoute exact path='/users'>
                         <UsersList />
-                    </ProtectedRoute> */}
+                    </ProtectedRoute>
                     {/* <ProtectedRoute exact path='/users/:userId'>
                         <User />
                     </ProtectedRoute> */}
