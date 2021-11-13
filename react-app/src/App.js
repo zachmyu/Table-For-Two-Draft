@@ -55,12 +55,12 @@ function App() {
                     <Route exact path='/' >
                         <HomePage setResults={setResults} />
                     </Route>
-                    <ProtectedRoute exact path='/users'>
+                    {/* <ProtectedRoute exact path='/users'>
                         <UsersList />
-                    </ProtectedRoute>
-                    {/* <ProtectedRoute exact path='/users/:userId'>
-                        <User />
                     </ProtectedRoute> */}
+                    <ProtectedRoute exact path='/users/:userId'>
+                        <User />
+                    </ProtectedRoute>
                 </Switch>
             )}
             <Footer />
