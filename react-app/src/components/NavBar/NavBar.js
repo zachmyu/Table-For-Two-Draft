@@ -18,11 +18,11 @@ const NavBar = ({ loaded }) => {
             <>
                 <div className='navbar-button'>
                     <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active' className='navbar-button'>
-                        <i class="fas fa-user-circle"></i>
+                        <i className="fas fa-user-circle"></i>
                     </NavLink>
                 </div>
                 <div className='navbar-button'>
-                    <i class="far fa-calendar"></i>
+                    <i className="far fa-calendar"></i>
                 </div>
                 <div className='logout'>
                     <LogoutButton />
