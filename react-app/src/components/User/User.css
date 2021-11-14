@@ -1,0 +1,61 @@
+/* body{
+    background-color: rgb(247, 247, 247);
+    margin: 0px;
+} */
+.user-header {
+	display: flex;
+	align-items: center;
+	background-color: white;
+	border-bottom: rgb(247, 247, 247) solid 0.5px;
+	padding-left: 60px;
+}
+
+#profile_img {
+	padding: 15px 0px 15px 10px;
+	width: 100px;
+	border-radius: 50%;
+}
+
+.user-reservations {
+	margin: 0px 30px;
+}
+
+.user-reservation-detail {
+	display: flex;
+	width: 70%;
+}
+
+.user-picture-container {
+	width: 50%;
+	margin: 15px;
+	box-sizing: border-box;
+}
+
+.user-reservation-update {
+	margin: 15px;
+}
+
+.user-reservation-pic {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	box-sizing: border-box;
+}
+
+.user-reservation-form {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}
+
+.user-reservation-select {
+	width: 150px;
+	margin: 10px 30px;
+}
+
+#calendar {
+	width: 300px;
+	height: 200px;
+	box-sizing: border-box;
+}
