@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getAllVenueReviews } from "../../store/review"
+import { getAllVenueReviews, updateReview, deleteReview } from "../../store/review"
 
 
 
@@ -9,16 +9,49 @@ function Reviews() {
     const dispatch = useDispatch();
 
 
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+    const [rating, setRating] = useState(0);
+    const [showForm, setShowForm] = useState(false)
+    const [formId, setFormId] = useState(null)
+    const [buttonUnFave, setButtonUnFave] = useState('button-unfave')
+    const [buttonAddFave, setButtonAddFave] = useState('button-addfave')
+    const [oneClickBtn, setOneClickBtn] = useState(false)
 
 
     const venue = useSelector(state => state?.venue.current)
     const sessionUser = useSelector(state => state.session.user)
     const reviews = Object.values(useSelector(state => state?.review))
-    console.log(reviews)
 
     useEffect(() => {
         dispatch(getAllVenueReviews(venue.id))
     }, [dispatch, venue.id])
+
+    const editReview = async (reviewId, title, body, rating, e) => {
+        e.preventDefault();
+        dispatch(updateReview(sessionUser.id, venue.id, title, body, Number(rating), reviewId))
+        setTitle('')
+        setBody('')
+        setRating('')
+        setShowForm(false)
+    }
+
+    const openForm = (review) => {
+        setShowForm(!showForm)
+        setTitle(review.title)
+        setBody(review.body)
+        setRating(review.rating)
+        setFormId(review.id)
+    }
+
+    const deleteSingleReview = async (reviewId) => {
+        let alert = window.confirm('Are you sure you want to delete this review?')
+        if (alert) {
+            await dispatch(deleteReview(reviewId))
+        }
+    }
+
+
 
     let reviewsList;
     if (sessionUser) {
