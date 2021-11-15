@@ -5,7 +5,7 @@ import { updateReview, deleteReview } from '../../store/review'
 import { useParams, useHistory } from "react-router-dom";
 import { createFavorites, deleteFavorites } from '../../store/favorite'
 // import ReviewFormModal from '../ReviewFormModal/ReviewCreateForm'
-// import ReservationForm from '../Reservations/ReservationForm'
+import ReservationForm from '../Reservation/Reservation'
 import './Venue.css'
 // import '../ReviewFormModal/ReviewForm.css'
 
