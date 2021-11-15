@@ -6,7 +6,9 @@ import { useParams, useHistory } from "react-router-dom";
 import { createFavorites, deleteFavorites } from '../../store/favorite'
 // import ReviewFormModal from '../ReviewFormModal/ReviewCreateForm'
 import ReservationForm from '../Reservation/Reservation'
+
 import './Venue.css'
+import Reviews from "./Reviews";
 // import '../ReviewFormModal/ReviewForm.css'
 
 
@@ -14,6 +16,7 @@ function Venue() {
     const { id } = useParams()
     const dispatch = useDispatch();
     const history = useHistory();
+
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [rating, setRating] = useState(0);
@@ -116,95 +119,6 @@ function Venue() {
         )
     }
 
-    let reviewChange;
-    if (user) {
-        reviewChange = (
-            <div className='container_venue-comments'>
-                {reviewsInfo && reviewsInfo.map(review => (
-                    <>
-                        <hr />
-                        <h3>Title: {review.title}</h3>
-                        <div>{review.body}</div>
-                        {user.id === review.user_id && (
-                            <div className='container_venue-commentsEdit'>
-                                <button className='button3' onClick={() => openForm(review)}>Edit Review</button>
-                                {showForm && review.id === formId ?
-                                    <>
-                                        <h3>Edit your review for this venue</h3>
-                                        <form className='review-container'
-                                            onSubmit={(e) =>
-                                                editReview(review.id, title, body, Number(rating), e)}
-                                            key={review.id}>
-                                            <div className='review-element-container'>
-                                                <input
-                                                    className='review-element'
-                                                    type='text'
-                                                    value={title}
-                                                    placeholder='Title'
-                                                    onChange={(e) =>
-                                                        setTitle(e.target.value)}
-                                                    required>
-                                                </input>
-                                            </div>
-                                            <div className='review-element-container'>
-                                                <textarea
-                                                    className='review-text-element'
-                                                    value={body}
-                                                    placeholder='Update your review!'
-                                                    onChange={(e) =>
-                                                        setBody(e.target.value)}
-                                                    required
-                                                />
-
-                                            </div>
-                                            <div className='review-radio-container'>
-                                                <h3>Rating</h3>
-                                                {[1, 2, 3, 4, 5].map(i => (
-                                                    <div className='review-radio-select'>
-                                                        {i}
-                                                        <input
-                                                            type="radio"
-                                                            key={i}
-                                                            value={i}
-                                                            checked={i === rating}
-                                                            onClick={() => ratingHelper(i)}>
-                                                        </input>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                            <div className='review-button-container'>
-                                                <button className='button2' type='submit'>Update Review</button>
-                                                <button className='button1' onClick={() => deleteSingleReview(review.id)}>Delete Review</button>
-                                            </div>
-                                        </form>
-                                    </>
-                                    : null
-                                }
-                            </div>
-                        )}
-                    </>
-                ))
-                }
-                <hr />
-                {/* <div><ReviewFormModal venue_id={id} /></div> */}
-            </div >
-        )
-    } else {
-        reviewChange = (
-            <div className='container_venue-comments'>
-                {reviewsInfo?.map(review => (
-                    <div className='container_venue-comments' id={review.id}>
-                        <hr />
-                        <h3>Title: {review.title}</h3>
-                        <div>{review.body}</div>
-                    </div>
-                ))}
-                <hr />
-                <h4>Please log in to add or edit reviews!</h4>
-            </div>
-        )
-    }
-
     let makeReservation;
     if (user) {
         makeReservation = (
@@ -212,10 +126,10 @@ function Venue() {
                 {favoriteButton}
                 <div className='container-reservation'>
                     <h3>Reservations</h3>
-                    {/* <ReservationForm venue_id={id}
+                    <ReservationForm venue_id={id}
                         venue={venue}
                         reservations={reservations}>
-                    </ReservationForm> */}
+                    </ReservationForm>
                 </div>
             </>
         )
@@ -260,7 +174,7 @@ function Venue() {
                             <div className='container_venue-summary'>
                                 {venue.description}
                             </div>
-                            {reviewChange}
+                            <Reviews />
                         </div>
                         <div className='container_venue-right'>
                             <div id="venueElement-reservation">{makeReservation}</div>
