@@ -58,7 +58,7 @@ function Reviews() {
         reviewsList = (
             <div className='container_venue-comments'>
                 {reviews && reviews.map(review => (
-                    <>
+                    <div className='container_venue-comments' key={review.id}>
                         <hr />
                         <h3>Title: {review.title}</h3>
                         <div>{review.body}</div>
@@ -120,7 +120,7 @@ function Reviews() {
                                 } */}
                             </div>
                         )}
-                    </>
+                    </div>
                 ))
                 }
                 <hr />
@@ -131,7 +131,7 @@ function Reviews() {
         reviewsList = (
             <div className='container_venue-comments'>
                 {reviews && reviews?.map(review => (
-                    <div className='container_venue-comments' id={review.id}>
+                    <div className='container_venue-comments' key={review.id}>
                         <hr />
                         <h3>Title: {review.title}</h3>
                         <div>{review.body}</div>
