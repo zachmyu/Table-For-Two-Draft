@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import { Modal } from '../../context/Modal';
 import { createReview } from '../../store/review'
 
@@ -8,7 +7,6 @@ import "./ReviewForm.css"
 
 function ReviewCreate({ venue_id }) {
     const dispatch = useDispatch();
-    const history = useHistory()
 
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
@@ -26,11 +24,11 @@ function ReviewCreate({ venue_id }) {
             body,
             rating
         }
-        console.log(reviewDetails)
         dispatch(createReview(reviewDetails))
+        setTitle("")
+        setBody("")
+        setRating(0)
         setShowModal(false)
-        // history.push(`/users/${sessionUser.id}`)
-
     }
 
     const ratingHelper = (num) => {
@@ -46,8 +44,8 @@ function ReviewCreate({ venue_id }) {
                     key={i}
                     value={i}
                     checked={i === rating}
-                    // onChange={(e) => setRating(i)}
-                    onClick={() => ratingHelper(i)}
+                    onChange={(e) => setRating(i)}
+                // onClick={() => ratingHelper(i)}
                 >
                 </input>
             </div>
