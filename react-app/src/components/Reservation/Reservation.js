@@ -1,6 +1,5 @@
 import React from 'react'
-import { createReservation } from '../../store/reservations'
-import ReservationForm from '../../components/Reservations/ReservationForm'
+import { createReservation } from '../../store/reservation'
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import Calendar from '../Calendar'
@@ -36,7 +35,7 @@ function ReservationForm({ venue_id, venue, reservations }) {
     return (
         <>
             <span>Make a new reservation!</span>
-            <Calendar reservation_datetime={reservation_datetime} setReservationDateTime={setReservationDateTime}></Calendar>
+            {/* <Calendar reservation_datetime={reservation_datetime} setReservationDateTime={setReservationDateTime}></Calendar> */}
             <div className='reservation-element'>
                 <span>People: </span>
                 <select
