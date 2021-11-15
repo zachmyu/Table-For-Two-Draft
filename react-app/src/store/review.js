@@ -65,22 +65,23 @@ export const getAllVenueReviews = venueId => async dispatch => {
 }
 
 export const createReview = reviewData => async dispatch => {
-    const { userId, venueId, title, body, rating } = reviewData
-
-    const res = await fetch(`/api/reviews/create/`, {
+    const { user_id, venue_id, title, body, rating } = reviewData
+    const res = await fetch(`/api/reviews/venues/${venue_id}/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            user_id: userId,
-            venue_id: venueId,
-            title: title,
-            body: body,
-            rating: rating
+            user_id,
+            venue_id,
+            title,
+            body,
+            rating
         }),
+
     });
     const data = await res.json();
+    console.log(data)
 
     if (res.ok) {
         dispatch(addReview(data))
@@ -144,7 +145,7 @@ const reviewsReducer = (state = initialState, action) => {
 
         case CREATE_REVIEW:
             newState = Object.assign({}, state);
-            newState[action.payload.id] = action.payload;
+            newState[action.payload.review.id] = action.payload.review;
             return newState;
 
         case UPDATE_REVIEW:
