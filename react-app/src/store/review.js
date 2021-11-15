@@ -81,7 +81,6 @@ export const createReview = reviewData => async dispatch => {
 
     });
     const data = await res.json();
-    console.log(data)
 
     if (res.ok) {
         dispatch(addReview(data))
