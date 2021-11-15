@@ -32,6 +32,11 @@ ul {
 	background-color: white;
 }
 
+.navbar-buttons-group {
+	display: flex;
+	align-items: center;
+}
+
 /* janky fix, fix later */
 .logout {
 	background-color: white;

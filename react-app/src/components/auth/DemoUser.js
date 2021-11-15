@@ -22,11 +22,11 @@ const DemoUser = () => {
 
     return (
         <form onSubmit={onLogin}>
-            <div className='form'>
+            {/* <div className='form'>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
-            </div>
+            </div> */}
             <button type='submit' className="button3"> Demo User </button>
         </form>
     )

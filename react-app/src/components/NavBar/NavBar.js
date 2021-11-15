@@ -15,7 +15,7 @@ const NavBar = ({ loaded }) => {
     let sessionLinks;
     if (user) {
         sessionLinks = (
-            <>
+            <div className='navbar-buttons-group'>
                 <div className='navbar-button'>
                     <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active' className='navbar-button'>
                         <i className="fas fa-user-circle"></i>
@@ -24,14 +24,14 @@ const NavBar = ({ loaded }) => {
                 <div className='navbar-button'>
                     <i className="far fa-calendar"></i>
                 </div>
-                <div className='logout'>
+                <div className='navbar-button-container'>
                     <LogoutButton />
                 </div>
-            </>
+            </div>
         );
     } else {
         sessionLinks = (
-            <>
+            <div className='navbar-buttons-group'>
                 <div className='navbar-button-container'>
                     <LoginFormModal />
                 </div>
@@ -41,7 +41,7 @@ const NavBar = ({ loaded }) => {
                 <div className='navbar-button-container'>
                     <DemoUser />
                 </div>
-            </>
+            </div>
         );
     }
 
