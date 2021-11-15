@@ -92,8 +92,8 @@ function Venue() {
     let favoriteButton;
     if (faveFind) {
         favoriteButton = (
-            <div classNames='reservation-favorites'>
-                <span classNames='fav-title'>Remove from your favorites? ☹</span>
+            <div className='reservation-favorites'>
+                <span className='fav-title'>Remove from your favorites? ☹</span>
                 <button type='button'
                     disabled={oneClickBtn}
                     id={buttonUnFave}
@@ -102,19 +102,19 @@ function Venue() {
                             favorite?.venue_id === id
                         ))?.id)
                     )}>
-                    <i classNames="fas fa-heart" />
+                    <i className="fas fa-heart" />
                 </button >
             </div>
         )
     } else {
         favoriteButton = (
-            <div classNames='reservation-favorites'>
-                <span classNames='fav-title'>Add to your favorites!</span>
+            <div className='reservation-favorites'>
+                <span className='fav-title'>Add to your favorites!</span>
                 <button type='button'
                     disabled={oneClickBtn}
                     id={buttonAddFave}
                     onClick={addFave}>
-                    <i classNames="fas fa-heart" />
+                    <i className="fas fa-heart" />
                 </button>
             </div>
         )
@@ -160,15 +160,15 @@ function Venue() {
                             </div>
                             <div className='container_venue-details'>
                                 <div className='venue-details-element'>
-                                    <i classNames="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
                                     <span>{handleRating()}</span>
                                 </div>
                                 <div className='venue-details-element'>
-                                    <i classNames="far fa-comment-alt"> </i>
+                                    <i className="far fa-comment-alt"> </i>
                                     <span>{(Object.values(venue.reviews)).length} reviews</span>
                                 </div>
                                 <div className='venue-details-element'>
-                                    <i classNames="fas fa-money-bill-wave"></i>
+                                    <i className="fas fa-money-bill-wave"></i>
                                     <span>Price Per Couple: ${venue.price}</span>
                                 </div>
                             </div>
