@@ -36,7 +36,7 @@ def ratings_by_users(user_id):
 
 
 # UPDATE - Review
-@review_routes.route('/<int:id>', methods=['PUT'])
+@review_routes.route('/<int:id>/', methods=['PUT'])
 def review_edit(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -50,12 +50,12 @@ def review_edit(id):
 
 
 # CREATE - Review
-@review_routes.route('/venues/<int:id>', methods=['POST'])
+@review_routes.route('/venues/<int:id>/', methods=['POST'])
 def new_review(id):
     request_json = request.get_json()
     review = Review(
         user_id=request_json["user_id"],
-        venue_id=request_json["venue_id"],
+        venue_id=id,
         title=request_json["title"],
         body=request_json['body'],
         rating=request_json['rating']
