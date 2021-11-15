@@ -9,6 +9,7 @@ import ReservationForm from '../Reservation/Reservation'
 
 import './Venue.css'
 import Reviews from "./Reviews";
+import ReviewCreate from "../ReviewModal/ReviewCreate";
 // import '../ReviewFormModal/ReviewForm.css'
 
 
@@ -175,6 +176,7 @@ function Venue() {
                                 {venue.description}
                             </div>
                             <Reviews />
+                            <ReviewCreate venue_id={id} />
                         </div>
                         <div className='container_venue-right'>
                             <div id="venueElement-reservation">{makeReservation}</div>
