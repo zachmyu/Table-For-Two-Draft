@@ -91,7 +91,7 @@ export const createReview = reviewData => async dispatch => {
 }
 
 export const updateReview = reviewData => async dispatch => {
-    const { userId, venueId, title, body, rating, reviewId } = reviewData
+    const { user_id, venue_id, title, body, rating, reviewId } = reviewData
 
     const res = await fetch(`/api/reviews/${reviewId}/`, {
         method: 'PUT',
@@ -99,11 +99,11 @@ export const updateReview = reviewData => async dispatch => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            user_id: userId,
-            venue_id: venueId,
-            title: title,
-            body: body,
-            rating: rating
+            user_id,
+            venue_id,
+            title,
+            body,
+            rating
         }),
     });
     const data = await res.json();
