@@ -5,7 +5,7 @@ import { createReview } from '../../store/review'
 
 import "./ReviewForm.css"
 
-function ReviewCreate({ venue_id }) {
+function ReviewCreate({ venueId }) {
     const dispatch = useDispatch();
 
     const [showModal, setShowModal] = useState(false);
@@ -18,8 +18,8 @@ function ReviewCreate({ venue_id }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const reviewDetails = {
-            user_id: sessionUser.id,
-            venue_id,
+            userId: sessionUser.id,
+            venueId,
             title,
             body,
             rating
@@ -31,22 +31,15 @@ function ReviewCreate({ venue_id }) {
         setShowModal(false)
     }
 
-    const ratingHelper = (num) => {
-        setRating(num)
-    }
-
     const radioHelper = () => {
         return [1, 2, 3, 4, 5].map(i => (
-            <div className='review-radio-select'>
+            <div className='review-radio-select' key={i}>
                 {i}
                 <input
                     type="radio"
-                    key={i}
                     value={i}
                     checked={i === rating}
-                    onChange={(e) => setRating(i)}
-                // onClick={() => ratingHelper(i)}
-                >
+                    onChange={(e) => setRating(i)}>
                 </input>
             </div>
         ))
