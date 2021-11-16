@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { updateReview, deleteReview } from '../../store/review'
 
-function ReviewEdit({ venue_id, review }) {
+function ReviewEdit({ venueId, review }) {
     const dispatch = useDispatch();
-    // const history = useHistory()
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState(review.title);
     const [body, setBody] = useState(review.body);
@@ -17,29 +15,15 @@ function ReviewEdit({ venue_id, review }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const reviewDetails = {
-            user_id: sessionUser.id,
-            venue_id,
+            userId: sessionUser.id,
+            venueId,
             title,
             body,
             rating,
-            review_id: review.id
+            reviewId: review.id
         }
-        console.log(reviewDetails)
         dispatch(updateReview(reviewDetails))
-        setTitle("")
-        setBody("")
-        setRating(0)
         setShowModal(false)
-        // history.push(`/users/${sessionUser.id}`)
-
-    }
-
-    const openForm = (review) => {
-        // setShowForm(!showForm)
-        // setTitle(review.title)
-        // setBody(review.body)
-        // setRating(review.rating)
-        // setFormId(review.id)
     }
 
     const deleteCurrReview = async (reviewId) => {
@@ -49,21 +33,15 @@ function ReviewEdit({ venue_id, review }) {
         }
     }
 
-    const ratingHelper = (num) => {
-        setRating(num)
-    }
-
     const radioHelper = () => {
         return [1, 2, 3, 4, 5].map(i => (
-            <div className='review-radio-select'>
+            <div className='review-radio-select' key={i}>
                 {i}
                 <input
                     type="radio"
-                    key={i}
                     value={i}
                     checked={i === rating}
-                    onChange={(e) => setRating(i)}
-                    onClick={() => ratingHelper(i)}>
+                    onChange={(e) => setRating(i)}>
                 </input>
             </div>
         ))
