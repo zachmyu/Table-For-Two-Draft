@@ -60,7 +60,8 @@ function Reviews() {
                 {reviews && reviews.map(review => (
                     <div className='container_venue-comments' key={review.id}>
                         <hr />
-                        <h3>Title: {review.title}</h3>
+                        <h3>{review.title}</h3>
+                        <div>{review.rating} <i className="fas fa-star"></i></div>
                         <div>{review.body}</div>
                         {sessionUser.id === review.user_id && (
                             <div className='container_venue-commentsEdit'>
