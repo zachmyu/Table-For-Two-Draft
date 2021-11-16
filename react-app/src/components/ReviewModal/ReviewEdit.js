@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
-import { updateReview } from '../../store/review'
+import { updateReview, deleteReview } from '../../store/review'
 
 function ReviewEdit({ venue_id, review }) {
     const dispatch = useDispatch();
@@ -42,12 +42,12 @@ function ReviewEdit({ venue_id, review }) {
         // setFormId(review.id)
     }
 
-    // const deleteSingleReview = async (reviewId) => {
-    //     let alert = window.confirm('Are you sure you want to delete this review?')
-    //     if (alert) {
-    //         await dispatch(deleteReview(reviewId))
-    //     }
-    // }
+    const deleteCurrReview = async (reviewId) => {
+        let alert = window.confirm('Are you sure you want to delete this review?')
+        if (alert) {
+            await dispatch(deleteReview(reviewId))
+        }
+    }
 
     const ratingHelper = (num) => {
         setRating(num)
@@ -100,6 +100,7 @@ function ReviewEdit({ venue_id, review }) {
                         </div>
                         <div className='review-button-container'>
                             <button className="button2" type="submit">Submit Review</button>
+                            <button className='button1' onClick={() => deleteCurrReview(review.id)}>Delete Review</button>
                         </div>
                     </form >
                 </Modal>
