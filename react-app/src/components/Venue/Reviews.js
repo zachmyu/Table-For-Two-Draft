@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getAllVenueReviews, updateReview, deleteReview } from "../../store/review"
+import ReviewEdit from "../ReviewModal/ReviewEdit";
 
 
 
@@ -65,7 +66,8 @@ function Reviews() {
                         <div>{review.body}</div>
                         {sessionUser.id === review.user_id && (
                             <div className='container_venue-commentsEdit'>
-                                <button className='button3' >Edit Review</button>
+                                {/* <button className='button3' >Edit Review</button> */}
+                                <ReviewEdit venue_id={venue.id} review={review} />
                                 {/* <button className='button3' onClick={() => openForm(review)}>Edit Review</button> */}
                                 {/* {showForm && review.id === formId ?
                                     <>
