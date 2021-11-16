@@ -65,15 +65,15 @@ export const getAllVenueReviews = venueId => async dispatch => {
 }
 
 export const createReview = reviewData => async dispatch => {
-    const { user_id, venue_id, title, body, rating } = reviewData
-    const res = await fetch(`/api/reviews/venues/${venue_id}/`, {
+    const { userId, venueId, title, body, rating } = reviewData
+    const res = await fetch(`/api/reviews/venues/${venueId}/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            user_id,
-            venue_id,
+            user_id: userId,
+            venue_id: venueId,
             title,
             body,
             rating
@@ -91,15 +91,15 @@ export const createReview = reviewData => async dispatch => {
 }
 
 export const updateReview = reviewData => async dispatch => {
-    const { user_id, venue_id, title, body, rating, review_id } = reviewData
-    const res = await fetch(`/api/reviews/${review_id}/`, {
+    const { userId, venueId, title, body, rating, reviewId } = reviewData
+    const res = await fetch(`/api/reviews/${reviewId}/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            user_id,
-            venue_id,
+            user_id: userId,
+            venue_id: venueId,
             title,
             body,
             rating
