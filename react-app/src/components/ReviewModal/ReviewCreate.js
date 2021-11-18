@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { createReview } from '../../store/review'
+import { Rating } from '@mui/material';
 
 import "./ReviewForm.css"
 
@@ -31,20 +32,6 @@ function ReviewCreate({ venueId }) {
         setShowModal(false)
     }
 
-    const radioHelper = () => {
-        return [1, 2, 3, 4, 5].map(i => (
-            <div className='review-radio-select' key={i}>
-                {i}
-                <input
-                    type="radio"
-                    value={i}
-                    checked={i === rating}
-                    onChange={(e) => setRating(i)}>
-                </input>
-            </div>
-        ))
-    }
-
     return (
         <>
             <button className="button2" onClick={() => setShowModal(true)}>Create a review</button>
@@ -72,7 +59,13 @@ function ReviewCreate({ venueId }) {
                         </div>
                         <div className="review-radio-container">
                             <h3>Rating</h3>
-                            {radioHelper()}
+                            <Rating
+                                name="simple-controlled"
+                                value={rating}
+                                onChange={(event, newValue) => {
+                                    setRating(newValue);
+                                }}
+                            />
                         </div>
                         <div className='review-button-container'>
                             <button className="button2" type="submit">Submit Review</button>
