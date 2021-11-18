@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleVenue } from '../../store/venue'
 import { useParams, useHistory } from "react-router-dom";
+import { Rating } from '@mui/material';
 import { createFavorites, deleteFavorites } from '../../store/favorite'
 import ReservationForm from '../Reservation/Reservation'
 import Reviews from "./Reviews";
 import ReviewCreate from "../ReviewModal/ReviewCreate";
 
 import './Venue.css'
+import Favorites from './Favorite';
 
 
 function Venue() {
@@ -89,6 +91,7 @@ function Venue() {
         makeReservation = (
             <>
                 {favoriteButton}
+                <Favorites />
                 <div className='container-reservation'>
                     <h3>Reservations</h3>
                     <ReservationForm venue_id={id}
@@ -124,8 +127,8 @@ function Venue() {
                             </div>
                             <div className='container_venue-details'>
                                 <div className='venue-details-element'>
-                                    <i className="fas fa-star"></i>
-                                    <span>{handleRating()}</span>
+                                    <Rating name="read-only" value={handleRating()} precision={0.5} readOnly />
+                                    <span>Average Score: {handleRating()}</span>
                                 </div>
                                 <div className='venue-details-element'>
                                     <i className="far fa-comment-alt"> </i>
