@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllVenueReviews } from "../../store/review"
+import { Rating } from '@mui/material';
+
 import ReviewEdit from "../ReviewModal/ReviewEdit";
 
 function Reviews() {
@@ -22,7 +24,8 @@ function Reviews() {
                     <div className='container_venue-comments' key={review.id}>
                         <hr />
                         <h3>{review.title}</h3>
-                        <div>{review.rating} <i className="fas fa-star"></i></div>
+
+                        <Rating name="read-only" value={review.rating} readOnly />
                         <div>{review.body}</div>
                         {sessionUser.id === review.user_id && (
                             <div className='container_venue-commentsEdit'>
