@@ -15,13 +15,13 @@ def validation_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-
+#Get all venues
 @venue_routes.route('/')
 def venues():
     venues = Venue.query.all()
     return {"venues": [venue.to_dict() for venue in venues]}
 
-
+#Get One Venue
 @venue_routes.route('/<int:id>/')
 def venue(id):
     venue = Venue.query.get(id)
