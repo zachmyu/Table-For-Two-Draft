@@ -1,7 +1,7 @@
-const GET_FAVORITE = 'rating/GET_FAVORITE'
-const GET_ALL_FAVORITES = 'rating/GET_ALL_FAVORITES'
-const CREATE_FAVORITE = 'rating/CREATE_FAVORITE'
-const DELETE_FAVORITE = 'rating/DELETE_FAVORITE'
+const GET_FAVORITE = 'favorite/GET_FAVORITE'
+const GET_ALL_FAVORITES = 'favorite/GET_ALL_FAVORITES'
+const CREATE_FAVORITE = 'favorite/CREATE_FAVORITE'
+const DELETE_FAVORITE = 'favorite/DELETE_FAVORITE'
 
 const loadOneFavorite = favorite => ({
     type: GET_FAVORITE,
@@ -91,7 +91,7 @@ const favorite = (state = initialState, action) => {
 
         case GET_ALL_FAVORITES:
             newState = {}
-            action.payload.forEach((favorite) => {
+            action.payload.favorites.forEach((favorite) => {
                 newState[favorite.id] = favorite;
             })
             return newState;
