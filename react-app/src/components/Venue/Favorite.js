@@ -37,7 +37,7 @@ function Favorites() {
     const unFave = async (favId) => {
         console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
         await dispatch(deleteFavorites(favId))
-        setButtonUnFave('button-unfave-clicked')
+        // setButtonUnFave('button-unfave-clicked')
         // setOneClickBtn(true)
 
     }
