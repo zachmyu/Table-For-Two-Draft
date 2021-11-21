@@ -51,7 +51,6 @@ def postFavorite():
 @favorite_routes.route('/<int:id>/', methods=['DELETE'])
 @login_required
 def delete_favorite_by_id(id):
-    print("DELETED ID HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", id)
     delete_favorite = Favorite.query.get(id)
     db.session.delete(delete_favorite)
     db.session.commit()
