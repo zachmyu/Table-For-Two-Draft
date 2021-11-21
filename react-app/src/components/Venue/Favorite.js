@@ -48,9 +48,9 @@ function Favorites() {
             <div className='reservation-favorites'>
                 <span className='fav-title'>New Remove from your favorites? ☹</span>
                 <button type='button'
-                    disabled={oneClickBtn}
-                    id={buttonUnFave}
-                    onClick={unFave(faveFind.id)}
+                    // disabled={oneClickBtn}
+                    // id={buttonUnFave}
+                    onClick={() => unFave(faveFind.id)}
                 // onClick={() => (
                 //     unFave(userFavorites.find(favorite => (
                 //         favorite?.venue_id === venue.id
@@ -66,7 +66,7 @@ function Favorites() {
             <div className='reservation-favorites'>
                 <span className='fav-title'>New Add to your favorites!</span>
                 <button type='button'
-                    disabled={oneClickBtn}
+                    // disabled={oneClickBtn}
                     id={buttonAddFave}
                     onClick={addFave}>
                     <i className="fas fa-heart" />
