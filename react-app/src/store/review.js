@@ -20,14 +20,14 @@ const addReview = review => ({
     payload: review
 });
 
-const changeReview = review_id => ({
+const changeReview = reviewId => ({
     type: UPDATE_REVIEW,
-    payload: review_id
+    payload: reviewId
 });
 
-const removeReview = review_id => ({
+const removeReview = reviewId => ({
     type: DELETE_REVIEW,
-    payload: review_id
+    payload: reviewId
 });
 
 
