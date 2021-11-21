@@ -31,14 +31,15 @@ function Favorites() {
         setButtonAddFave('button-addfave-clicked')
         // setOneClickBtn(true)
         await dispatch(createFavorites({ userId: sessionUser.id, venueId: venue.id }))
-
+        console.log(!!faveFind)
     }
 
     const unFave = async (favId) => {
         console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
         await dispatch(deleteFavorites(favId))
-        // setButtonUnFave('button-unfave-clicked')
-        // setOneClickBtn(true)
+        setButtonUnFave('button-unfave-clicked')
+        setOneClickBtn(true)
+        console.log(!!faveFind)
 
     }
 
@@ -48,8 +49,8 @@ function Favorites() {
             <div className='reservation-favorites'>
                 <span className='fav-title'>New Remove from your favorites? ☹</span>
                 <button type='button'
-                    // disabled={oneClickBtn}
-                    // id={buttonUnFave}
+                    disabled={oneClickBtn}
+                    id={buttonUnFave}
                     onClick={() => unFave(faveFind.id)}
                 // onClick={() => (
                 //     unFave(userFavorites.find(favorite => (
