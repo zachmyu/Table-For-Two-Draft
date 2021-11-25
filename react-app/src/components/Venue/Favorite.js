@@ -18,10 +18,10 @@ function Favorites() {
         dispatch(getAllUserFavorites(sessionUser.id))
     }, [dispatch, sessionUser.id])
 
-    // useEffect(() => {
-    //     if (faveFind)
-    //         setButtonAddFave('button-addfave-clicked')
-    // }, [faveFind])
+    useEffect(() => {
+        if (faveFind)
+            setButtonAddFave('button-addfave-clicked')
+    }, [faveFind])
 
 
 
