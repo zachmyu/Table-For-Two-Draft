@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { updateReservation } from '../../store/reservation'
+import { updateReservation, getAllUserReservations } from '../../store/reservation'
 
 // import { updateReservation, deleteReservation } from '../../store/reservations'
 import { getSingleVenue } from '../../store/venue'
@@ -10,20 +10,29 @@ import { getSingleVenue } from '../../store/venue'
 import "./User.css"
 
 function User() {
-    const [user, setUser] = useState({});
+
+
+
     const { userId } = useParams();
-    const sessionUser = useSelector(state => state?.session.user)
-    const userReservations = Object.values(sessionUser.reservations)
-    console.log(userReservations)
-    const [reservation_datetime, setReservationDateTime] = useState(new Date());
-    const [party_size, setPartySize] = useState(2)
-    const [duration, setDuration] = useState(1.0)
-    const venues = useSelector(state => state?.venues)
     const dispatch = useDispatch();
     const history = useHistory()
 
+    const sessionUser = useSelector(state => state?.session.user)
+    console.log(sessionUser)
+    const userReservations = Object.values(sessionUser.reservations)
+    console.log(userReservations)
+
+    const [user, setUser] = useState({});
+    const [reservation_datetime, setReservationDateTime] = useState(new Date());
+    const [party_size, setPartySize] = useState(2)
+    const [duration, setDuration] = useState(1.0)
+
+
+    const venues = useSelector(state => state?.venues)
+
+
     useEffect(() => {
-        dispatch(getSingleVenue())
+        dispatch(getSingleVenue(), getAllUserReservations())
     }, [dispatch])
 
     useEffect(() => {
