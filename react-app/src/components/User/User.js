@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateReservation, getAllUserReservations } from '../../store/reservation'
 
 // import { updateReservation, deleteReservation } from '../../store/reservations'
-import { getSingleVenue } from '../../store/venue'
+// import { getSingleVenue } from '../../store/venue'
 // import Calendar from '../Calendar'
 
 import "./User.css"
@@ -28,23 +28,26 @@ function User() {
     const [duration, setDuration] = useState(1.0)
 
 
-    const venues = useSelector(state => state?.venues)
+    // const venues = useSelector(state => state?.venues)
 
 
-    useEffect(() => {
-        dispatch(getSingleVenue(), getAllUserReservations())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(
+    //         getSingleVenue(),
+    //         getAllUserReservations()
+    //     )
+    // }, [dispatch])
 
-    useEffect(() => {
-        if (!userId) {
-            return;
-        }
-        (async () => {
-            const response = await fetch(`/api/users/${userId}`);
-            const user = await response.json();
-            setUser(user);
-        })();
-    }, [userId]);
+    // useEffect(() => {
+    //     if (!userId) {
+    //         return;
+    //     }
+    //     (async (userId) => {
+    //         const response = await fetch(`/api/users/${userId}`);
+    //         const user = await response.json();
+    //         setUser(user);
+    //     })();
+    // }, [userId]);
 
     if (!user) {
         return null;
