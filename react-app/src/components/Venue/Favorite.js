@@ -8,6 +8,7 @@ function Favorites() {
     const [buttonUnFave, setButtonUnFave] = useState('button-unfave')
     const [buttonAddFave, setButtonAddFave] = useState('button-addfave')
     const [oneClickBtn, setOneClickBtn] = useState(false)
+    const [liked, setLiked] = useState({ id: null })
 
     const venue = useSelector(state => state?.venue.current)
     const sessionUser = useSelector(state => state.session.user)
@@ -20,7 +21,7 @@ function Favorites() {
 
     useEffect(() => {
         if (faveFind)
-            setButtonAddFave('button-addfave-clicked')
+            setLiked({ id: faveFind.id })
     }, [faveFind])
 
 
@@ -41,6 +42,16 @@ function Favorites() {
         setOneClickBtn(true)
         console.log(!!faveFind)
 
+    }
+
+    async function handleFav() {
+        if (liked.id) {
+            await dispatch(deleteFavorites(liked.id))
+            setLiked({ id: null })
+        } else {
+            let res = await dispatch(createFavorites({ userId: sessionUser.id, venueId: venue.id }))
+            setLiked({ id: res.favorite.id })
+        }
     }
 
     let favoriteButton;
@@ -78,7 +89,19 @@ function Favorites() {
 
     return (
         <>
-            {favoriteButton}
+            <span className='fav-title'>
+                {liked.id ? <>Like</>
+                    : <>Unliked!</>
+                }
+            </span>
+
+            <button
+                type='button'
+                onClick={() => handleFav()}
+                id={liked.id ? 'button-unfave' : 'button-addfave'}
+            >
+                <i className="fas fa-heart" />
+            </button >
         </>
     )
 
