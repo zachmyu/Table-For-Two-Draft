@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllUserFavorites, createFavorites, deleteFavorites, getOneFavorite } from "../../store/favorite"
+import { getAllUserFavorites, createFavorites, deleteFavorites } from "../../store/favorite"
 
 function Favorites() {
     const dispatch = useDispatch();
 
-    const [buttonUnFave, setButtonUnFave] = useState('button-unfave')
-    const [buttonAddFave, setButtonAddFave] = useState('button-addfave')
-    const [oneClickBtn, setOneClickBtn] = useState(false)
-    const [liked, setLiked] = useState({ id: null })
+    const [faved, setFaved] = useState({ id: null })
 
     const venue = useSelector(state => state?.venue.current)
     const sessionUser = useSelector(state => state.session.user)
@@ -21,36 +18,16 @@ function Favorites() {
 
     useEffect(() => {
         if (faveFind)
-            setLiked({ id: faveFind.id })
+            setFaved({ id: faveFind.id })
     }, [faveFind])
 
-
-
-
-    const addFave = async (e) => {
-        e.preventDefault();
-        setButtonAddFave('button-addfave-clicked')
-        // setOneClickBtn(true)
-        await dispatch(createFavorites({ userId: sessionUser.id, venueId: venue.id }))
-        console.log(!!faveFind)
-    }
-
-    const unFave = async (favId) => {
-        console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-        await dispatch(deleteFavorites(favId))
-        setButtonUnFave('button-unfave-clicked')
-        setOneClickBtn(true)
-        console.log(!!faveFind)
-
-    }
-
     async function handleFav() {
-        if (liked.id) {
-            await dispatch(deleteFavorites(liked.id))
-            setLiked({ id: null })
+        if (faved.id) {
+            await dispatch(deleteFavorites(faved.id))
+            setFaved({ id: null })
         } else {
             let res = await dispatch(createFavorites({ userId: sessionUser.id, venueId: venue.id }))
-            setLiked({ id: res.favorite.id })
+            setFaved({ id: res.favorite.id })
         }
     }
 
@@ -58,15 +35,15 @@ function Favorites() {
     return (
         <>
             <span className='fav-title'>
-                {liked.id ? <>Like</>
-                    : <>Unliked!</>
+                {faved.id ? <>Add to your favorites</>
+                    : <>Remove from your favorites!</>
                 }
             </span>
 
             <button
                 type='button'
                 onClick={() => handleFav()}
-                id={liked.id ? 'button-unfave' : 'button-addfave'}
+                id={faved.id ? 'button-addfave' : 'button-unfave'}
             >
                 <i className="fas fa-heart" />
             </button >
