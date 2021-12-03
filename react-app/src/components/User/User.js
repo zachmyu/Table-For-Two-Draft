@@ -120,26 +120,19 @@ function User() {
                 <h2> Your Current Reservations </h2>
                 {userReservations.map(reservation => (
                     <>
-                        <div>reservation</div>
-                        {/* <div>{reservation.venue_id}</div> */}
-                        {/* <div>{reservation.venue}</div> */}
-                        <div>{reservation.reservation_datetime}</div>
-                        <img src={reservation.venue.image_url}></img>
-                        {/* <div>{reservation}</div> */}
-                        {/* {Object.values(venues).map(venue => (
-                            <>
-                                {reservation.venue_id === venue.id && (
-                                    <div className='user-reservation-detail'>
-                                        <div className='user-picture-container'>
-                                            <a href={`/venues/${venue.id}`}>
-                                                <img className='user-reservation-pic'
-                                                    src={venue.image_url} alt={venue.name}></img>
-                                                <br></br>
-                                                <h3> {venue.name}</h3>
-                                            </a>
-                                        </div>
-                                        <div div className='user-reservation-update'>
-                                            <form className="user-reservation-form" onSubmit={(e) => editReservation(reservation.reservation_datetime, reservation.party_size, reservation.duration, reservation.id, venue.id, e)} key={reservation.id}> */}
+                        <div lassName="left">
+                            <h3>{reservation.venue.name}</h3>
+                            <img src={reservation.venue.image_url}></img>
+                        </div>
+
+                        <div className="right">
+
+                            <div>Reservation Date & Time: {reservation.reservation_datetime}</div>
+                            <div>Duration: {reservation.duration}</div>
+                            <div>Party Size: {reservation.party_size}</div>
+                            <button>Edit your reservation</button>
+                            <button>Cancel the reservation</button>
+                        </div>
 
                         {/* <Calendar className="user-reservation-element"
                                                     reservation_datetime={reservation_datetime} setReservationDateTime={setReservationDateTime} ></Calendar> */}
@@ -188,18 +181,18 @@ function User() {
                     </>
                 ))}
             </div>
-            {/* <div className="user-favorites">
-				<h2> Your Favorited Places </h2>
-				{Object.values(sessionUser.favorites).map(favorite => (
-					<h5>{favorite.venue_id}</h5>
-				))}
-			</div>
-			<div className="user-reviews">
-				<h2> Reviews you've made </h2>
-				{Object.values(sessionUser.reviews).map(review => (
-					<h5>{review.title}</h5>
-				))}
-			</div> */}
+            <div className="user-favorites">
+                <h2> Your Favorited Places </h2>
+                {Object.values(sessionUser.favorites).map(favorite => (
+                    <h5>{favorite.venue_id}</h5>
+                ))}
+            </div>
+            <div className="user-reviews">
+                <h2> Reviews you've made </h2>
+                {Object.values(sessionUser.reviews).map(review => (
+                    <h5>{review.title}</h5>
+                ))}
+            </div>
         </div >
     );
 }
