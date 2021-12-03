@@ -10,9 +10,6 @@ import { updateReservation, getAllUserReservations } from '../../store/reservati
 import "./User.css"
 
 function User() {
-
-
-
     const { userId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory()
@@ -124,6 +121,11 @@ function User() {
                 {userReservations.map(reservation => (
                     <>
                         <div>reservation</div>
+                        {/* <div>{reservation.venue_id}</div> */}
+                        {/* <div>{reservation.venue}</div> */}
+                        <div>{reservation.reservation_datetime}</div>
+                        <img src={reservation.venue.image_url}></img>
+                        {/* <div>{reservation}</div> */}
                         {/* {Object.values(venues).map(venue => (
                             <>
                                 {reservation.venue_id === venue.id && (
