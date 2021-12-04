@@ -10,6 +10,7 @@ import { updateReservation, getAllUserReservations } from '../../store/reservati
 
 import "./User.css"
 import UserReservations from './UserReservations';
+import UserFavorites from './UserFavorites';
 
 function User() {
     const { userId } = useParams();
@@ -17,9 +18,7 @@ function User() {
     const history = useHistory()
 
     const sessionUser = useSelector(state => state?.session.user)
-    // console.log(sessionUser)
-    // const userReservations = Object.values(sessionUser.reservations)
-    // console.log(userReservations)
+
 
     const [user, setUser] = useState({});
     const [reservation_datetime, setReservationDateTime] = useState(new Date());
@@ -63,7 +62,7 @@ function User() {
     // 			}
     // 		})
     // 	})
-    // 	console.log("userReservations", userReservations)
+
     // 	return userReservations = []
     // }
 
@@ -76,7 +75,6 @@ function User() {
     // 			}
     // 		})
     // 	})
-    // 	console.log("userFavorites", userFavorites)
     // 	return userFavorites = []
     // }
 
@@ -89,7 +87,6 @@ function User() {
     // 			}
     // 		})
     // 	})
-    // 	console.log("userReviews", userReviews)
     // 	return userReviews = []
     // }
 
@@ -120,6 +117,26 @@ function User() {
         }
     }
 
+    const favoriteToggle = () => {
+        if (viewFavorites === false) {
+            setViewReservations(false)
+            setViewFavorites(true)
+            setViewReviews(false)
+        } else {
+            setViewFavorites(false)
+        }
+    }
+
+    const reviewToggle = () => {
+        if (viewReviews === false) {
+            setViewReservations(false)
+            setViewFavorites(false)
+            setViewReviews(true)
+        } else {
+            setViewReviews(false)
+        }
+    }
+
 
     const durations = [1, 2, 3]
 
@@ -133,26 +150,19 @@ function User() {
             <div className="user-reservations">
                 <hr></hr>
                 <div className="sidebar">
-
-                    <button>Your Favorites</button>
-                    <button>Your Reviews</button>
                     <button onClick={reservationToggle}>Your Reservations</button>
-
-
+                    <button onClick={favoriteToggle}>Your Favorites</button>
+                    <button onClick={reviewToggle}>Your Reviews</button>
 
                 </div>
                 <div className="main-body">
                     {viewReservations && (<UserReservations />)}
+                    {viewFavorites && (<UserFavorites />)}
+                    {viewReviews && (<UserReservations />)}
                 </div>
 
-                {/* {userReservations.map(reservation => (<h5 key={reservation.id}>{reservation.id}</h5>))} */}
             </div>
-            <div className="user-favorites">
-                <h2> Your Favorited Places </h2>
-                {Object.values(sessionUser.favorites).map(favorite => (
-                    <h5 key={favorite.id}>{favorite.venue_id}</h5>
-                ))}
-            </div>
+
             <div className="user-reviews">
                 <h2> Reviews you've made </h2>
                 {Object.values(sessionUser.reviews).map(review => (
