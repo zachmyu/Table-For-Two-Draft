@@ -8,14 +8,14 @@ reservation_routes = Blueprint('reservations', __name__)
 
 
 # Read One User Reservation
-@reservation_routes.route('/<int:id>')
+@reservation_routes.route('/<int:id>/')
 def reservation(id):
     reservation = Reservation.query.get(id)
     return reservation.to_dict()
 
 
 # Read All User Reservations
-@reservation_routes.route('/user/<int:id>')
+@reservation_routes.route('/user/<int:id>/')
 @login_required
 def user_reservation(id):
     reservations = Reservation.query.filter_by(user_id=id).all()
