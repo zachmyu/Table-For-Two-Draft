@@ -11,6 +11,7 @@ import { updateReservation, getAllUserReservations } from '../../store/reservati
 import "./User.css"
 import UserReservations from './UserReservations';
 import UserFavorites from './UserFavorites';
+import UserReviews from './UserReviews';
 
 function User() {
     const { userId } = useParams();
@@ -153,21 +154,14 @@ function User() {
                     <button onClick={reservationToggle}>Your Reservations</button>
                     <button onClick={favoriteToggle}>Your Favorites</button>
                     <button onClick={reviewToggle}>Your Reviews</button>
-
                 </div>
+
                 <div className="main-body">
                     {viewReservations && (<UserReservations />)}
                     {viewFavorites && (<UserFavorites />)}
-                    {viewReviews && (<UserReservations />)}
+                    {viewReviews && (<UserReviews />)}
                 </div>
 
-            </div>
-
-            <div className="user-reviews">
-                <h2> Reviews you've made </h2>
-                {Object.values(sessionUser.reviews).map(review => (
-                    <h5 key={review.id}>{review.title}</h5>
-                ))}
             </div>
         </div >
     );
