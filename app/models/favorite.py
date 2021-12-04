@@ -10,7 +10,7 @@ class Favorite(db.Model, UserMixin):
         'users.id'), nullable=False)
     venue_id = db.Column(db.Integer, db.ForeignKey(
         'venues.id'), nullable=False)
-    
+
     user = db.relationship('User', back_populates='favorites')
     venue = db.relationship('Venue', back_populates='favorites')
 
@@ -18,5 +18,6 @@ class Favorite(db.Model, UserMixin):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'venue_id': self.venue_id
+            # 'venue_id': self.venue_id,
+            'venue': self.venue.to_dict()
         }
