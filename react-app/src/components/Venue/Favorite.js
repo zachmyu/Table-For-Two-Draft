@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllUserFavorites, createFavorites, deleteFavorites } from "../../store/favorite"
+import { createFavorites, deleteFavorites } from "../../store/favorite"
 
 function Favorites() {
     const dispatch = useDispatch();
@@ -19,10 +19,15 @@ function Favorites() {
 
     async function handleFav() {
         if (faved.id) {
-            await dispatch(deleteFavorites(faved.id))
-            setFaved({ id: null })
+            let alert = window.confirm('Are you sure you want to remove this venue from your favorites? ')
+            if (alert) {
+                await dispatch(deleteFavorites(faved.id))
+                setFaved({ id: null })
+            }
         } else {
-            let res = await dispatch(createFavorites({ userId: sessionUser.id, venueId: venue.id }))
+            let res = await dispatch(createFavorites({
+                userId: sessionUser.id, venueId: venue.id
+            }))
             setFaved({ id: res.favorite.id })
         }
     }
