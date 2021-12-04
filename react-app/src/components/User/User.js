@@ -17,9 +17,9 @@ function User() {
     const history = useHistory()
 
     const sessionUser = useSelector(state => state?.session.user)
-    console.log(sessionUser)
-    const userReservations = Object.values(sessionUser.reservations)
-    console.log(userReservations)
+    // console.log(sessionUser)
+    // const userReservations = Object.values(sessionUser.reservations)
+    // console.log(userReservations)
 
     const [user, setUser] = useState({});
     const [reservation_datetime, setReservationDateTime] = useState(new Date());
@@ -129,6 +129,7 @@ function User() {
                 <img id='profile_img' src={sessionUser.profile_image_url} alt={sessionUser.username}></img>
                 <h1> Welcome {sessionUser.first_name}!</h1>
             </div>
+
             <div className="user-reservations">
                 <hr></hr>
                 <div className="sidebar">
@@ -136,37 +137,37 @@ function User() {
                     <button>Your Favorites</button>
                     <button>Your Reviews</button>
                     <button onClick={reservationToggle}>Your Reservations</button>
-                    {viewReservations && (
-                        <>
 
-                            <UserReservations />
 
-                        </>
-                    )}
 
                 </div>
-                <h2> Your Current Reservations </h2>
-                {userReservations.map(reservation => (
-                    <>
+                <div className="main-body">
+                    {viewReservations && (<UserReservations />)}
+                </div>
 
-                        {/*
-                        <div className="left">
-                            <h3>{reservation.venue.name}</h3>
-                            <img src={reservation.venue.image_url}></img>
-                        </div>
+                {/* {userReservations.map(reservation => (<h5 key={reservation.id}>{reservation.id}</h5>))} */}
+            </div>
+            <div className="user-favorites">
+                <h2> Your Favorited Places </h2>
+                {Object.values(sessionUser.favorites).map(favorite => (
+                    <h5 key={favorite.id}>{favorite.venue_id}</h5>
+                ))}
+            </div>
+            <div className="user-reviews">
+                <h2> Reviews you've made </h2>
+                {Object.values(sessionUser.reviews).map(review => (
+                    <h5 key={review.id}>{review.title}</h5>
+                ))}
+            </div>
+        </div >
+    );
+}
+export default User;
 
-                        <div className="right">
 
-                            <div>Reservation Date & Time: {reservation.reservation_datetime}</div>
-                            <div>Duration: {reservation.duration}</div>
-                            <div>Party Size: {reservation.party_size}</div>
-                            <button>Edit your reservation</button>
-                            <button>Cancel the reservation</button>
-                        </div> */}
-
-                        {/* <Calendar className="user-reservation-element"
+{/* <Calendar className="user-reservation-element"
                                                     reservation_datetime={reservation_datetime} setReservationDateTime={setReservationDateTime} ></Calendar> */}
-                        {/* <select
+{/* <select
                                                     className="user-reservation-select"
                                                     onChange={(e) => {
                                                         Number(setPartySize(Number(e.target.value)))
@@ -206,24 +207,3 @@ function User() {
                                         </div>
                                     </div>
                                 )} */}
-                        {/* </>
-                ))} */}
-                    </>
-                ))}
-            </div>
-            <div className="user-favorites">
-                <h2> Your Favorited Places </h2>
-                {Object.values(sessionUser.favorites).map(favorite => (
-                    <h5>{favorite.venue_id}</h5>
-                ))}
-            </div>
-            <div className="user-reviews">
-                <h2> Reviews you've made </h2>
-                {Object.values(sessionUser.reviews).map(review => (
-                    <h5>{review.title}</h5>
-                ))}
-            </div>
-        </div >
-    );
-}
-export default User;
