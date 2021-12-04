@@ -3,11 +3,13 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { updateReservation, getAllUserReservations } from '../../store/reservation'
 
+
 // import { updateReservation, deleteReservation } from '../../store/reservations'
 // import { getSingleVenue } from '../../store/venue'
 // import Calendar from '../Calendar'
 
 import "./User.css"
+import UserReservations from './UserReservations';
 
 function User() {
     const { userId } = useParams();
@@ -23,7 +25,9 @@ function User() {
     const [reservation_datetime, setReservationDateTime] = useState(new Date());
     const [party_size, setPartySize] = useState(2)
     const [duration, setDuration] = useState(1.0)
-
+    const [viewReservations, setViewReservations] = useState(false)
+    const [viewFavorites, setViewFavorites] = useState(false)
+    const [viewReviews, setViewReviews] = useState(false)
 
     // const venues = useSelector(state => state?.venues)
 
@@ -106,6 +110,16 @@ function User() {
     // 	}
     // 	history.push(`/users/${user.id}`)
     // }
+    const reservationToggle = () => {
+        if (viewReservations === false) {
+            setViewReservations(true)
+            setViewFavorites(false)
+            setViewReviews(false)
+        } else {
+            setViewReservations(false)
+        }
+    }
+
 
     const durations = [1, 2, 3]
 
@@ -117,10 +131,26 @@ function User() {
             </div>
             <div className="user-reservations">
                 <hr></hr>
+                <div className="sidebar">
+
+                    <button>Your Favorites</button>
+                    <button>Your Reviews</button>
+                    <button onClick={reservationToggle}>Your Reservations</button>
+                    {viewReservations && (
+                        <>
+
+                            <UserReservations />
+
+                        </>
+                    )}
+
+                </div>
                 <h2> Your Current Reservations </h2>
                 {userReservations.map(reservation => (
                     <>
-                        <div lassName="left">
+
+                        {/*
+                        <div className="left">
                             <h3>{reservation.venue.name}</h3>
                             <img src={reservation.venue.image_url}></img>
                         </div>
@@ -132,7 +162,7 @@ function User() {
                             <div>Party Size: {reservation.party_size}</div>
                             <button>Edit your reservation</button>
                             <button>Cancel the reservation</button>
-                        </div>
+                        </div> */}
 
                         {/* <Calendar className="user-reservation-element"
                                                     reservation_datetime={reservation_datetime} setReservationDateTime={setReservationDateTime} ></Calendar> */}
