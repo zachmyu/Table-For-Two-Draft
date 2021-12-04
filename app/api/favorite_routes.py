@@ -17,10 +17,6 @@ def validation_error_messages(validation_errors):
 def favorite(id):
     favorite = Favorite.query.get(id)
     return favorite.to_dict()
-# def favorite(user_id, venue_id):
-# userFavorite = Favorite.query.filter_by(user_id=user_id).all()
-# venueFavorite = userFavorite.query.filterby(venue_id=venue_id).all()
-# return venueFavorite.to_dict()
 
 
 # Read all User Favorites
@@ -44,7 +40,6 @@ def postFavorite():
     db.session.add(favorite)
     db.session.commit()
     return {'favorite': favorite.to_dict()}
-    # return request.get_json()
 
 
 # Delete User Favorite
@@ -52,6 +47,7 @@ def postFavorite():
 @login_required
 def delete_favorite_by_id(id):
     delete_favorite = Favorite.query.get(id)
+    deleted_favorite = delete_favorite.to_dict()
     db.session.delete(delete_favorite)
     db.session.commit()
-    return {"delete_favorite": delete_favorite.to_dict()}
+    return {"delete_favorite": deleted_favorite}
