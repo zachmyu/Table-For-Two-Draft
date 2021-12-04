@@ -127,7 +127,7 @@ const menu_itemsReducer = (state = initialState, action) => {
             return newState;
 
         case READ_ALL_RESERVATIONS:
-            newState = { ...action.payload };
+            newState = { ...action.payload.reservations };
             return newState;
 
         case CREATE_RESERVATION:
