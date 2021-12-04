@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { updateReservation, getAllUserFavorites } from '../../store/favorite'
+import { getAllUserFavorites } from '../../store/favorite'
 
 
 function UserFavorites() {
@@ -17,9 +17,9 @@ function UserFavorites() {
         <>
             <h2> Your Favorited Places </h2>
             {userFavorites.map(favorite => (
-                <div key={favorite.id}>
+                <a href={`/venues/${favorite.venue.id}`} key={favorite.id}>
                     <h5>{favorite.venue.name}</h5>
-                </div>
+                </a>
             ))}
         </>
     )
