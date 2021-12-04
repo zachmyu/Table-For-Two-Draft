@@ -13,10 +13,6 @@ function Favorites() {
     const faveFind = userFavorites?.find(favorite => favorite?.venue_id === venue.id)
 
     useEffect(() => {
-        dispatch(getAllUserFavorites(sessionUser.id))
-    }, [dispatch, sessionUser.id])
-
-    useEffect(() => {
         if (faveFind)
             setFaved({ id: faveFind.id })
     }, [faveFind])
@@ -31,19 +27,18 @@ function Favorites() {
         }
     }
 
-
     return (
         <>
             <span className='fav-title'>
-                {faved.id ? <>Add to your favorites</>
-                    : <>Remove from your favorites!</>
+                {faved.id ? <>Remove from your favorites...</>
+                    : <>Add to your favorites</>
                 }
             </span>
 
             <button
                 type='button'
                 onClick={() => handleFav()}
-                id={faved.id ? 'button-addfave' : 'button-unfave'}
+                id={faved.id ? 'button-unfave' : 'button-addfave'}
             >
                 <i className="fas fa-heart" />
             </button >
