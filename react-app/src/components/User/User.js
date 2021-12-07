@@ -1,105 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
-import { updateReservation, getAllUserReservations } from '../../store/reservation'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux'
 
-
-// import { updateReservation, deleteReservation } from '../../store/reservations'
-// import { getSingleVenue } from '../../store/venue'
-// import Calendar from '../Calendar'
-
-import "./User.css"
 import UserReservations from './UserReservations';
 import UserFavorites from './UserFavorites';
 import UserReviews from './UserReviews';
 
+import "./User.css"
 function User() {
-    const { userId } = useParams();
-    const dispatch = useDispatch();
-    const history = useHistory()
-
     const sessionUser = useSelector(state => state?.session.user)
 
-
-    const [user, setUser] = useState({});
-    const [reservation_datetime, setReservationDateTime] = useState(new Date());
-    const [party_size, setPartySize] = useState(2)
-    const [duration, setDuration] = useState(1.0)
-    const [viewReservations, setViewReservations] = useState(false)
+    const [viewReservations, setViewReservations] = useState(true)
     const [viewFavorites, setViewFavorites] = useState(false)
     const [viewReviews, setViewReviews] = useState(false)
 
-    // const venues = useSelector(state => state?.venues)
-
-
-    // useEffect(() => {
-    //     dispatch(
-    //         getSingleVenue(),
-    //         getAllUserReservations()
-    //     )
-    // }, [dispatch])
-
-    // useEffect(() => {
-    //     if (!userId) {
-    //         return;
-    //     }
-    //     (async (userId) => {
-    //         const response = await fetch(`/api/users/${userId}`);
-    //         const user = await response.json();
-    //         setUser(user);
-    //     })();
-    // }, [userId]);
-
-    if (!user) {
+    if (!sessionUser) {
         return null;
     }
 
-    // const reservationHelper = () => {
-    // 	let userReservations = []
-    // 	Object.values(venues).map(venue => {
-    // 		Object.values(sessionUser.reservations).map(reservation => {
-    // 			if (reservation.venue_id === venue.id) {
-    // 				userReservations.push(venue)
-    // 			}
-    // 		})
-    // 	})
-
-    // 	return userReservations = []
+    // const editReservation = async (reservation_datetime, party_size, duration, reservationId, venue_id, e) => {
+    //     e.preventDefault();
+    //     dispatch(updateReservation(userId, venue_id, reservation_datetime, party_size, duration, reservationId))
+    //     setReservationDateTime('')
+    //     setPartySize('')
+    //     setDuration(0.0)
+    //     history.push(`/users/${user.id}`)
     // }
-
-    // const favoritesHelper = () => {
-    // 	let userFavorites = []
-    // 	Object.values(venues).map(venue => {
-    // 		Object.values(sessionUser.favoritess).map(favorites => {
-    // 			if (favorites.venue_id === venue.id) {
-    // 				userFavorites.push(venue)
-    // 			}
-    // 		})
-    // 	})
-    // 	return userFavorites = []
-    // }
-
-    // const reviewsHelper = () => {
-    // 	let userReviews = []
-    // 	Object.values(venues).map(venue => {
-    // 		Object.values(sessionUser.reviews).map(review => {
-    // 			if (review.venue_id === venue.id) {
-    // 				userReviews.push(venue)
-    // 			}
-    // 		})
-    // 	})
-    // 	return userReviews = []
-    // }
-
-
-    const editReservation = async (reservation_datetime, party_size, duration, reservationId, venue_id, e) => {
-        e.preventDefault();
-        dispatch(updateReservation(userId, venue_id, reservation_datetime, party_size, duration, reservationId))
-        setReservationDateTime('')
-        setPartySize('')
-        setDuration(0.0)
-        history.push(`/users/${user.id}`)
-    }
 
     // const deleteSingleReservation = async (reservationId) => {
     // 	let alert = window.confirm('Are you sure you want to delete this reservation?')
@@ -108,6 +33,7 @@ function User() {
     // 	}
     // 	history.push(`/users/${user.id}`)
     // }
+
     const reservationToggle = () => {
         if (viewReservations === false) {
             setViewReservations(true)
@@ -137,9 +63,6 @@ function User() {
             setViewReviews(false)
         }
     }
-
-
-    const durations = [1, 2, 3]
 
     return (
         <div className="user-container">
