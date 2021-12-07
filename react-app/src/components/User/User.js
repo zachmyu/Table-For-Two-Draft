@@ -57,7 +57,7 @@ function User() {
             </div>
 
             <div className="user-info">
-                <div className="sidebar">
+                <div className="user-sidebar">
                     <button className={viewReservations ? 'user-options-selected' : "user-options-button"} onClick={reservationToggle}>
                         Your Reservations
                     </button>
@@ -69,7 +69,7 @@ function User() {
                     </button>
                 </div>
 
-                <div className="main-body">
+                <div className="user-main-body">
                     {viewReservations && (<UserReservations />)}
                     {viewFavorites && (<UserFavorites />)}
                     {viewReviews && (<UserReviews />)}

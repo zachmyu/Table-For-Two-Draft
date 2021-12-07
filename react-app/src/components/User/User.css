@@ -18,20 +18,16 @@
 	display: flex;
 }
 
-/* ***** User Reservations ***** */
-.user-reservation-select {
-	width: 150px;
-	margin: 10px 30px;
-}
-
-.sidebar {
+/* ***** User Sidebar ***** */
+.user-sidebar {
 	display: flex;
 	flex-direction: column;
-	padding-top: 100px;
+	margin-top: 50px;
 }
 
 .user-options-button {
 	background: none;
+	border: 1px solid rgb(175, 175, 175);
 	border-left: none;
 	height: 50px;
 	width: 250px;
@@ -44,10 +40,24 @@
 
 .user-options-selected {
 	background-color: lightseagreen;
+	border: 1px solid rgb(175, 175, 175);
 	border-left: none;
 	height: 50px;
 	font-size: 1.5rem;
 }
+
+.user-main-body {
+	margin: 50px 0;
+	padding: 20px;
+	width: 60vw;
+	border: 1px solid rgb(175, 175, 175);
+}
+
+/* ***** User Reservations ***** */
+/* .user-reservation-select {
+	width: 150px;
+	margin: 10px 30px;
+} */
 
 /* ***** User Favorites ***** */
 
