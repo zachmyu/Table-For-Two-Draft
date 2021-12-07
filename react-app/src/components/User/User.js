@@ -6,6 +6,7 @@ import UserFavorites from './UserFavorites';
 import UserReviews from './UserReviews';
 
 import "./User.css"
+
 function User() {
     const sessionUser = useSelector(state => state?.session.user)
 
@@ -16,23 +17,6 @@ function User() {
     if (!sessionUser) {
         return null;
     }
-
-    // const editReservation = async (reservation_datetime, party_size, duration, reservationId, venue_id, e) => {
-    //     e.preventDefault();
-    //     dispatch(updateReservation(userId, venue_id, reservation_datetime, party_size, duration, reservationId))
-    //     setReservationDateTime('')
-    //     setPartySize('')
-    //     setDuration(0.0)
-    //     history.push(`/users/${user.id}`)
-    // }
-
-    // const deleteSingleReservation = async (reservationId) => {
-    // 	let alert = window.confirm('Are you sure you want to delete this reservation?')
-    // 	if (alert) {
-    // 		dispatch(deleteReservation(reservationId))
-    // 	}
-    // 	history.push(`/users/${user.id}`)
-    // }
 
     const reservationToggle = () => {
         if (viewReservations === false) {
@@ -69,14 +53,20 @@ function User() {
             <div className="user-header">
                 <img id='profile_img' src={sessionUser.profile_image_url} alt={sessionUser.username}></img>
                 <h1> Welcome {sessionUser.first_name}!</h1>
+                <hr></hr>
             </div>
 
-            <div className="user-reservations">
-                <hr></hr>
+            <div className="user-info">
                 <div className="sidebar">
-                    <button onClick={reservationToggle}>Your Reservations</button>
-                    <button onClick={favoriteToggle}>Your Favorites</button>
-                    <button onClick={reviewToggle}>Your Reviews</button>
+                    <button className={viewReservations ? 'user-options-selected' : "user-options-button"} onClick={reservationToggle}>
+                        Your Reservations
+                    </button>
+                    <button className={viewFavorites ? 'user-options-selected' : "user-options-button"} onClick={favoriteToggle}>
+                        Your Favorites
+                    </button>
+                    <button className={viewReviews ? 'user-options-selected' : "user-options-button"} onClick={reviewToggle}>
+                        Your Reviews
+                    </button>
                 </div>
 
                 <div className="main-body">
