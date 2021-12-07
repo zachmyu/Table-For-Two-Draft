@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { updateReview, getAllUserReviews } from '../../store/review'
+import { Rating } from '@mui/material';
+import { getAllUserReviews } from '../../store/review'
+import ReviewEdit from "../ReviewModal/ReviewEdit";
 
 
 function UserReviews() {
@@ -15,12 +17,20 @@ function UserReviews() {
 
     return (
         <>
-            <h2> Your Current Reservations </h2>
+            <h2> Reviews from you</h2>
             {userReviews.map(review => (
                 <div key={review.id}>
-                    <div>{review.rating}</div>
-                    <div>{review.title}</div>
+                    <a href={`/venues/${review.venue_id}`}>
+                        <div>{review.venues}</div>
+                    </a>
+                    <div>Title: {review.title}</div>
+                    <Rating
+                        name="read-only" value={review.rating}
+                        precision={0.5} readOnly />
                     <div>{review.body}</div>
+                    <div className='container_venue-commentsEdit'>
+                        <ReviewEdit venueId={review.venue_id} review={review} />
+                    </div>
                     <hr />
                 </div>
             ))}
