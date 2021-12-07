@@ -13,7 +13,7 @@ class Review(db.Model, UserMixin):
     title = db.Column(db.String(255), nullable=False)
     body = db.Column(db.Text(), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
-    
+
     user = db.relationship('User', back_populates='reviews')
     venue = db.relationship('Venue', back_populates='reviews')
 
@@ -24,5 +24,6 @@ class Review(db.Model, UserMixin):
             'venue_id': self.venue_id,
             'title': self.title,
             'body': self.body,
-            'rating': self.rating
+            'rating': self.rating,
+            "venues": self.venue.name
         }
