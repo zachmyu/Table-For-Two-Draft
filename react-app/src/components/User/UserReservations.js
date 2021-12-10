@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { updateReservation, getAllUserReservations } from '../../store/reservation'
 
+import "./User.css"
 
 function UserReservations() {
     const dispatch = useDispatch();
@@ -18,17 +19,18 @@ function UserReservations() {
             <h2> Your Current Reservations </h2>
             {userReservations.map(reservation => (
                 <div key={reservation.id}>
-                    <div className="left">
+                    <div className="reservation-left">
                         <h3>{reservation.venue.name}</h3>
-                        <img src={reservation.venue.image_url}></img>
+                        <img className="reservation-venuePic" src={reservation.venue.image_url}></img>
                     </div>
 
-                    <div className="right">
+                    <div className="reservation-right">
                         <div>Reservation Date & Time: {reservation.reservation_datetime}</div>
                         <div>Duration: {reservation.duration}</div>
                         <div>Party Size: {reservation.party_size}</div>
                         <button>Edit your reservation</button>
                         <button>Cancel the reservation</button>
+                        <hr />
                     </div>
                 </div>
             ))}
