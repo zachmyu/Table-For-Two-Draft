@@ -52,7 +52,7 @@ function User() {
         <div className="user-container">
             <div className="user-header">
                 <img id='profile_img' src={sessionUser.profile_image_url} alt={sessionUser.username}></img>
-                <h1> Welcome {sessionUser.first_name}!</h1>
+                <h1 className="user-greeting"> Welcome {sessionUser.first_name}!</h1>
                 <hr></hr>
             </div>
 

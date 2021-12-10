@@ -8,9 +8,13 @@
 }
 
 #profile_img {
-	padding: 15px 0px 15px 10px;
+	padding: 15px;
 	width: 100px;
 	border-radius: 50%;
+}
+
+.user-greeting {
+	padding: 15px;
 }
 
 .user-info {
