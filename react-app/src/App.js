@@ -3,7 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authenticate } from './store/session';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+
+
 import NavBar from './components/NavBar/NavBar';
+
 // import UsersList from './components/UsersList';
 import User from './components/User/User';
 // import Calendar from './components/Calendar'
@@ -33,7 +38,7 @@ function App() {
     }
 
     return (
-        <>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
             <NavBar loaded={loaded} />
             {loaded && (
                 <Switch>
@@ -64,7 +69,7 @@ function App() {
                 </Switch>
             )}
             <Footer />
-        </>
+        </LocalizationProvider>
     );
 }
 
