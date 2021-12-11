@@ -32,7 +32,7 @@ function Calendar() {
                 id="datetime-local"
                 label="Make a reservation"
                 type="datetime-local"
-                defaultValue="2017-05-24T10:30"
+                defaultValue="2022-01-01T08:00"
                 sx={{ width: 250 }}
                 InputLabelProps={{
                     shrink: true,
