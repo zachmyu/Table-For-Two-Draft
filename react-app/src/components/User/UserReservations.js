@@ -28,8 +28,12 @@ function UserReservations() {
                         <div>Reservation Date & Time: {reservation.reservation_datetime}</div>
                         <div>Duration: {reservation.duration}</div>
                         <div>Party Size: {reservation.party_size}</div>
-                        <button>Edit your reservation</button>
-                        <button>Cancel the reservation</button>
+                        <div className='reservation-button-container'>
+                            <button className="button2" type="submit">Edit your reservation</button>
+                            <button className='button1'
+                            // onClick={() => deleteCurrReview(review.id)}
+                            >Cancel the reservation</button>
+                        </div>
                         <hr />
                     </div>
                 </div>
