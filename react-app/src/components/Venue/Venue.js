@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleVenue } from '../../store/venue'
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Rating } from '@mui/material';
-import { createFavorites, deleteFavorites } from '../../store/favorite'
 import ReservationForm from '../Reservation/Reservation'
 import Reviews from "./Reviews";
 import ReviewCreate from "../ReviewModal/ReviewCreate";
@@ -15,19 +14,12 @@ import Favorites from './Favorite';
 function Venue() {
     const { id } = useParams()
     const dispatch = useDispatch();
-    const history = useHistory();
-
-    const [buttonUnFave, setButtonUnFave] = useState('button-unfave')
-    const [buttonAddFave, setButtonAddFave] = useState('button-addfave')
-    const [oneClickBtn, setOneClickBtn] = useState(false)
 
     const user = useSelector(state => state.session.user)
     const reservations = useSelector(state => state.reservations)
     const venue = useSelector(state => state?.venue.current)
     const userFavorites = user ? Object.values(user?.favorites) : null
     const reviewsInfo = venue ? Object.values(venue?.reviews) : null
-    const faveFind = userFavorites?.find(favorite => favorite?.venue_id === id)
-
 
     useEffect(() => {
         dispatch(getSingleVenue(id))
@@ -40,57 +32,12 @@ function Venue() {
         return avg
     }
 
-    // const addFave = async (e) => {
-    //     e.preventDefault();
-    //     setButtonAddFave('button-addfave-clicked')
-    //     setOneClickBtn(true)
-    //     await dispatch(createFavorites({ user_id: user.id, venue_id: id }))
-    //     history.push(`/venues/${id}`)
-    // }
 
-    // const unFave = async (favId) => {
-    //     await dispatch(deleteFavorites(favId))
-    //     setButtonUnFave('button-unfave-clicked')
-    //     setOneClickBtn(true)
-    //     history.push(`/venues/${id}`)
-    // }
-
-    let favoriteButton;
-    // if (faveFind) {
-    //     favoriteButton = (
-    //         <div className='reservation-favorites'>
-    //             <span className='fav-title'>Remove from your favorites? ☹</span>
-    //             <button type='button'
-    //                 disabled={oneClickBtn}
-    //                 id={buttonUnFave}
-    //                 onClick={() => (
-    //                     unFave(userFavorites.find(favorite => (
-    //                         favorite?.venue_id === id
-    //                     ))?.id)
-    //                 )}>
-    //                 <i className="fas fa-heart" />
-    //             </button >
-    //         </div>
-    //     )
-    // } else {
-    //     favoriteButton = (
-    //         <div className='reservation-favorites'>
-    //             <span className='fav-title'>Add to your favorites!</span>
-    //             <button type='button'
-    //                 disabled={oneClickBtn}
-    //                 id={buttonAddFave}
-    //                 onClick={addFave}>
-    //                 <i className="fas fa-heart" />
-    //             </button>
-    //         </div>
-    //     )
-    // }
 
     let makeReservation;
     if (user) {
         makeReservation = (
             <>
-                {/* {favoriteButton} */}
                 <Favorites />
                 <div className='container-reservation'>
                     <h3>Reservations</h3>
