@@ -1,44 +1,38 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import TimePicker from '@mui/lab/TimePicker';
+
 import Stack from '@mui/material/Stack';
+import { format } from 'date-fns'
 
 function Calendar() {
+    const [date, setDate] = useState(new Date())
+    const [time, setTime] = useState(format(new Date(), "HH"))
 
-    const currentTime = new Date()
-    console.log(currentTime)
     return (
         <Stack component="form" noValidate spacing={3}>
-            {/* <TextField
-                id="date"
-                label="Birthday"
-                type="date"
-                defaultValue="2017-05-24"
-                sx={{ width: 220 }}
-                InputLabelProps={{
-                    shrink: true,
+            <DesktopDatePicker
+                label="Reservation Date"
+                value={date}
+                minDate={new Date('2017-01-01')}
+                onChange={(newValue) => {
+                    setDate(newValue);
                 }}
-            /> */}
-            {/* <TextField
-                id="time"
-                label="Alarm clock"
-                type="time"
-                defaultValue="07:30"
-                InputLabelProps={{
-                    shrink: true,
+                renderInput={(params) => <TextField {...params} />}
+            />
+            <TimePicker
+                renderInput={(params) => <TextField {...params} />}
+                label="Reservation Time"
+                value={time}
+                onChange={(newValue) => {
+                    setTime(newValue);
                 }}
-                inputProps={{
-                    step: 300, // 5 min
-                }}
-                sx={{ width: 150 }}
-            /> */}
-            <TextField
-                id="datetime-local"
-                label="Make a reservation"
-                type="datetime-local"
-                defaultValue={currentTime}
-                sx={{ width: 250 }}
-                InputLabelProps={{
-                    shrink: true,
+                shouldDisableTime={(timeValue, clockType) => {
+                    if (clockType === 'minutes' && timeValue % 30) {
+                        return true;
+                    }
+                    return false;
                 }}
             />
         </Stack>
