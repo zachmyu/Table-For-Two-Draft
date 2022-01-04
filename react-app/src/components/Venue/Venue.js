@@ -18,7 +18,6 @@ function Venue() {
     const user = useSelector(state => state.session.user)
     const reservations = useSelector(state => state.reservations)
     const venue = useSelector(state => state?.venue.current)
-    const userFavorites = user ? Object.values(user?.favorites) : null
     const reviewsInfo = venue ? Object.values(venue?.reviews) : null
 
     useEffect(() => {
