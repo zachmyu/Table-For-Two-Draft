@@ -3,6 +3,9 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 
 function Calendar() {
+
+    const currentTime = new Date()
+    console.log(currentTime)
     return (
         <Stack component="form" noValidate spacing={3}>
             {/* <TextField
@@ -32,7 +35,7 @@ function Calendar() {
                 id="datetime-local"
                 label="Make a reservation"
                 type="datetime-local"
-                defaultValue="2022-01-01T08:00"
+                defaultValue={currentTime}
                 sx={{ width: 250 }}
                 InputLabelProps={{
                     shrink: true,
