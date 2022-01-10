@@ -34,7 +34,7 @@ function ReservationForm({ venue_id, venue, reservations }) {
                 <span>Number of couples: </span>
                 <select onChange={e => { setPeople(e.target.value) }}>
                     {peopleAmount.map(count => {
-                        return <option value={count}>{count}</option>
+                        return <option key={count} value={count}>{count}</option>
                     })}
                 </select>
             </div>
