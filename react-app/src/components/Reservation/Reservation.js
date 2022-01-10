@@ -7,9 +7,11 @@ import Calendar from '../Calendar/Calendar';
 
 
 
-function ReservationForm({ venue_id, venue, reservations }) {
+function ReservationForm({ venue_id }) {
     const sessionUser = useSelector(state => state.session.user);
     const [reservation_datetime, setReservationDateTime] = useState(new Date());
+    // const [date, setDate] = useState(new Date())
+    // const [time, setTime] = useState(new Date(new Date().setMinutes(0)))
     const [people, setPeople] = useState(2);
     const [duration, setDuration] = useState(1.0);
     const dispatch = useDispatch();
@@ -22,13 +24,17 @@ function ReservationForm({ venue_id, venue, reservations }) {
         e.preventDefault();
         dispatch(createReservation({ user_id: sessionUser.id, venue_id, reservation_datetime, party_size: Number(people), duration: Number(duration) }))
         window.confirm(`Your reservation has been made for ${reservation_datetime} for ${people} couples!`)
-        history.push(`/users/${sessionUser.id}`)
+        // history.push(`/users/${sessionUser.id}`)
+        history.push("/")
     }
 
     return (
         <>
             <span>Make a new reservation!</span>
-            <Calendar reservation_datetime={reservation_datetime}
+            <Calendar
+                // date={date} setDate={setDate}
+                // time={time} setTime={setTime}
+                reservation_datetime={reservation_datetime}
                 setReservationDateTime={setReservationDateTime} />
             <div className='reservation-element'>
                 <span>Number of couples: </span>
@@ -40,9 +46,9 @@ function ReservationForm({ venue_id, venue, reservations }) {
             </div>
             <div className='reservation-element'>
                 <span>Duration:  </span>
-                <select value={duration} onChange={e => Number(setDuration(Number(e.target.value)))}>
+                <select value={duration} onChange={e => setDuration(e.target.value)}>
                     {durations.map((duration) => (
-                        <option key={duration} value={Number(duration)}>{duration} Hour(s)</option>
+                        <option key={duration} value={duration}>{duration} Hour(s)</option>
                     ))}
                 </select>
             </div>
