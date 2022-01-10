@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 
-// Initializing DemoUser component
 const DemoUser = () => {
     const [errors, setErrors] = useState([]);
     const user = useSelector(state => state.session.user);
@@ -22,15 +21,14 @@ const DemoUser = () => {
 
     return (
         <form onSubmit={onLogin}>
-            {/* <div className='form'>
+            <div className='form'>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
-            </div> */}
+            </div>
             <button type='submit' className="button3"> Demo User </button>
         </form>
     )
 }
 
-// Exporting
 export default DemoUser;
