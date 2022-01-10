@@ -6,12 +6,9 @@ import { createReservation } from '../../store/reservation'
 import Calendar from '../Calendar/Calendar';
 
 
-
 function ReservationForm({ venue_id }) {
     const sessionUser = useSelector(state => state.session.user);
-    const [reservation_datetime, setReservationDateTime] = useState(new Date());
-    // const [date, setDate] = useState(new Date())
-    // const [time, setTime] = useState(new Date(new Date().setMinutes(0)))
+    const [dateTime, setDateTime] = useState(new Date(new Date().setMinutes(0)));
     const [people, setPeople] = useState(2);
     const [duration, setDuration] = useState(1.0);
     const dispatch = useDispatch();
@@ -22,20 +19,17 @@ function ReservationForm({ venue_id }) {
 
     const reservation = async (e) => {
         e.preventDefault();
-        dispatch(createReservation({ user_id: sessionUser.id, venue_id, reservation_datetime, party_size: Number(people), duration: Number(duration) }))
-        window.confirm(`Your reservation has been made for ${reservation_datetime} for ${people} couples!`)
-        // history.push(`/users/${sessionUser.id}`)
+        dispatch(createReservation({ user_id: sessionUser.id, venue_id, reservation_datetime: dateTime, party_size: Number(people), duration: Number(duration) }))
+        window.confirm(`Your reservation has been made for ${dateTime} for ${people} couples!`)
         history.push("/")
     }
 
     return (
         <>
-            <span>Make a new reservation!</span>
+            <h4>Make a new reservation!</h4>
             <Calendar
-                // date={date} setDate={setDate}
-                // time={time} setTime={setTime}
-                reservation_datetime={reservation_datetime}
-                setReservationDateTime={setReservationDateTime} />
+                dateTime={dateTime}
+                setDateTime={setDateTime} />
             <div className='reservation-element'>
                 <span>Number of couples: </span>
                 <select onChange={e => { setPeople(e.target.value) }}>
