@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { updateReservation, getAllUserReservations } from '../../store/reservation'
 
@@ -21,7 +21,7 @@ function UserReservations() {
                 <div key={reservation.id}>
                     <div className="reservation-left">
                         <h3>{reservation.venue.name}</h3>
-                        <img className="reservation-venuePic" src={reservation.venue.image_url}></img>
+                        <img className="reservation-venuePic" src={reservation.venue.image_url} alt={reservation.venue.name}></img>
                     </div>
 
                     <div className="reservation-right">
