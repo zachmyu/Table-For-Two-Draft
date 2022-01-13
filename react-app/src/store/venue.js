@@ -155,7 +155,7 @@ const venuesReducer = (state = initialState, action) => {
             return newState;
 
         case READ_ALL_VENUES:
-            newState = { ...action.payload.venues };
+            newState = { ...action.payload };
             return newState;
 
         case CREATE_VENUE:
