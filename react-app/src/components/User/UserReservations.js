@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { updateReservation, getAllUserReservations } from '../../store/reservation'
+import { deleteReservation, getAllUserReservations } from '../../store/reservation'
 
 import "./User.css"
 
@@ -13,6 +13,13 @@ function UserReservations() {
     useEffect(() => {
         dispatch(getAllUserReservations(sessionUser.id))
     }, [dispatch, sessionUser.id])
+
+    const deleteCurrReservation = async (reservationId) => {
+        let alert = window.confirm('Are you sure you want to delete this reservation?')
+        if (alert) {
+            await dispatch(deleteReservation(reservationId))
+        }
+    }
 
     return (
         <>
@@ -31,7 +38,7 @@ function UserReservations() {
                         <div className='reservation-button-container'>
                             <button className="button2" type="submit">Edit your reservation</button>
                             <button className='button1'
-                            // onClick={() => deleteCurrReview(review.id)}
+                                onClick={() => deleteCurrReservation(reservation.id)}
                             >Cancel the reservation</button>
                         </div>
                         <hr />
