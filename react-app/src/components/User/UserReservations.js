@@ -9,6 +9,7 @@ function UserReservations() {
 
     const sessionUser = useSelector(state => state?.session.user)
     const userReservations = Object.values(useSelector(state => state.reservation))
+    console.log(userReservations)
 
     useEffect(() => {
         dispatch(getAllUserReservations(sessionUser.id))
