@@ -58,6 +58,9 @@ def updateReservation(id):
 @login_required
 def delete_reservation_by_id(id):
     delete_reservation = Reservation.query.get(id)
+    # deleted_reservation = delete_reservation.to_dict()
+    print("reservation found")
     db.session.delete(delete_reservation)
     db.session.commit()
-    return {'delete_reservation', delete_reservation.to_dict()}
+    # return {"Reservation Deleted", deleted_reservation}
+    return "Reservation Deleted"
