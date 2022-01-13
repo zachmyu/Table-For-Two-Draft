@@ -71,4 +71,5 @@ def delete_review_by_id(id):
     delete_review = Review.query.get(id)
     db.session.delete(delete_review)
     db.session.commit()
-    return {'delete_review': delete_review.to_dict()}
+    # return {'delete_review': delete_review.to_dict()}
+    return "Review deleted"
