@@ -19,7 +19,7 @@ def reservation(id):
 @login_required
 def user_reservation(id):
     reservations = Reservation.query.filter_by(user_id=id).all()
-    return {"reservations": [reservation.to_dict() for reservation in reservations]}
+    return {reservation.id: reservation.to_dict() for reservation in reservations}
 
 
 # Create User Reservation
