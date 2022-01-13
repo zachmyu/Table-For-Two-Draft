@@ -19,7 +19,8 @@ def validation_error_messages(validation_errors):
 @venue_routes.route('/')
 def venues():
     venues = Venue.query.all()
-    return {"venues": [venue.to_dict() for venue in venues]}
+    return {venue.id: venue.to_dict() for venue in venues}
+    # return {"venues": [venue.to_dict() for venue in venues]}
 
 #Get One Venue
 @venue_routes.route('/<int:id>/')
