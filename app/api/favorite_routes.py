@@ -47,7 +47,8 @@ def postFavorite():
 @login_required
 def delete_favorite_by_id(id):
     delete_favorite = Favorite.query.get(id)
-    deleted_favorite = delete_favorite.to_dict()
+    # deleted_favorite = delete_favorite.to_dict()
     db.session.delete(delete_favorite)
     db.session.commit()
-    return {"delete_favorite": deleted_favorite}
+    # return {"Favorite deleted", deleted_favorite}
+    return "Favorite Deleted"
