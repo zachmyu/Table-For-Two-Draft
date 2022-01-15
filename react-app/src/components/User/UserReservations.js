@@ -38,7 +38,7 @@ function UserReservations() {
                         <div>Duration: {reservation.duration}</div>
                         <div>Party Size: {reservation.party_size}</div>
                         <div className='reservation-button-container'>
-                            <ReservationEdit />
+                            <ReservationEdit reservation={reservation} />
                             <button className='button1'
                                 onClick={() => deleteCurrReservation(reservation.id)}
                             >Cancel the reservation</button>
