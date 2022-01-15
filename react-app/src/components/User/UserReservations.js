@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteReservation, getAllUserReservations } from '../../store/reservation'
+import ReservationEdit from "../Reservation/ReservationEdit";
 
 import "./User.css"
 
@@ -37,7 +38,7 @@ function UserReservations() {
                         <div>Duration: {reservation.duration}</div>
                         <div>Party Size: {reservation.party_size}</div>
                         <div className='reservation-button-container'>
-                            <button className="button2" type="submit">Edit your reservation</button>
+                            <ReservationEdit />
                             <button className='button1'
                                 onClick={() => deleteCurrReservation(reservation.id)}
                             >Cancel the reservation</button>
