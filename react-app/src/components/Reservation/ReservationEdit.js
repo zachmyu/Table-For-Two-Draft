@@ -3,27 +3,27 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReservation } from '../../store/reservation'
+import { updateReservation } from '../../store/reservation'
 import Calendar from '../Calendar/Calendar';
 
 
-function ReservationEdit({ venue_id }) {
+function ReservationEdit({ reservation, venue_id }) {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false);
-    const [dateTime, setDateTime] = useState(new Date(new Date().setMinutes(0)));
-    const [people, setPeople] = useState(2);
-    const [duration, setDuration] = useState(1.0);
+    const [dateTime, setDateTime] = useState(reservation.reservation_datetime);
+    const [people, setPeople] = useState(reservation.party_size);
+    const [duration, setDuration] = useState(reservation.party_size);
     const dispatch = useDispatch();
-    const history = useHistory();
+
 
     const durations = [1, 2, 3]
     const peopleAmount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
-    const reservation = async (e) => {
+    const reservationUpdate = async (e) => {
         e.preventDefault();
-        dispatch(createReservation({ user_id: sessionUser.id, venue_id, reservation_datetime: dateTime, party_size: Number(people), duration: Number(duration) }))
-        window.confirm(`Your reservation has been made for ${dateTime} for ${people} couples!`)
-        history.push("/")
+        dispatch(updateReservation({ user_id: sessionUser.id, venue_id: reservation.venue_id, reservation_datetime: dateTime, party_size: Number(people), duration: Number(duration) }))
+        window.confirm(`Your reservation has been updated for ${dateTime} for ${people} couples!`)
+        return setShowModal(false)
     }
 
     return (
@@ -51,7 +51,7 @@ function ReservationEdit({ venue_id }) {
                             ))}
                         </select>
                     </div>
-                    <button className='button1' onClick={reservation}>Make a reservation</button>
+                    <button className='button1' onClick={reservationUpdate}>Update Reservation</button>
                 </Modal>
             )}
         </>
