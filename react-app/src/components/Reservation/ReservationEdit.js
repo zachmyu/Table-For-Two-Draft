@@ -28,10 +28,10 @@ function ReservationEdit({ venue_id }) {
 
     return (
         <>
-            <button className='button3' onClick={() => setShowModal(true)}>Edit Review</button>
+            <button className='button2' onClick={() => setShowModal(true)}>Edit your reservation</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <h4>Make a new reservation!</h4>
+                    <h4>Edit your reservation!</h4>
                     <Calendar
                         dateTime={dateTime}
                         setDateTime={setDateTime} />
