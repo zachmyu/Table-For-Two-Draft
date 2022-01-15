@@ -7,7 +7,7 @@ import { createReservation } from '../../store/reservation'
 import Calendar from '../Calendar/Calendar';
 
 
-function ReservationForm({ venue_id }) {
+function ReservationEdit({ venue_id }) {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false);
     const [dateTime, setDateTime] = useState(new Date(new Date().setMinutes(0)));
@@ -59,4 +59,4 @@ function ReservationForm({ venue_id }) {
 
 }
 
-export default ReservationForm
+export default ReservationEdit
