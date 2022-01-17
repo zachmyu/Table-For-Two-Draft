@@ -40,7 +40,7 @@ function Venue() {
                 <Favorites />
                 <div className='container-reservation'>
                     <h3>Reservations</h3>
-                    <ReservationForm venue_id={id}
+                    <ReservationForm venueId={id}
                         venue={venue}
                         reservations={reservations}>
                     </ReservationForm>
