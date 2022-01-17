@@ -6,7 +6,7 @@ import { createReservation } from '../../store/reservation'
 import Calendar from '../Calendar/Calendar';
 
 
-function ReservationForm({ venue_id }) {
+function ReservationForm({ venueId }) {
     const sessionUser = useSelector(state => state.session.user);
     const [dateTime, setDateTime] = useState(new Date(new Date().setMinutes(0)));
     const [people, setPeople] = useState(2);
