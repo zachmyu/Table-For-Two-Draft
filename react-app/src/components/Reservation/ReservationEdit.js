@@ -21,7 +21,7 @@ function ReservationEdit({ reservation, venue_id }) {
 
     const reservationUpdate = async (e) => {
         e.preventDefault();
-        dispatch(updateReservation({ user_id: sessionUser.id, venue_id: reservation.venue_id, reservation_datetime: dateTime, party_size: Number(people), duration: Number(duration) }))
+        dispatch(updateReservation({ userId: sessionUser.id, venueId: reservation.venue_id, reservation_datetime: dateTime, party_size: Number(people), duration: Number(duration), reservationId: reservation.id }))
         window.confirm(`Your reservation has been updated for ${dateTime} for ${people} couples!`)
         return setShowModal(false)
     }
