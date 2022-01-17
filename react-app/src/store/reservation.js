@@ -54,7 +54,7 @@ export const getAllUserReservations = userId => async dispatch => {
 }
 
 export const createReservation = reservationData => async dispatch => {
-    const { user_id, venue_id, reservation_datetime, party_size, duration } = reservationData
+    const { userId, venueId, reservationDatetime, partySize, duration } = reservationData
 
     const res = await fetch(`/api/reservations/create/`, {
         method: 'POST',
@@ -62,11 +62,11 @@ export const createReservation = reservationData => async dispatch => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            user_id: user_id,
-            venue_id: venue_id,
-            reservation_datetime: reservation_datetime,
-            party_size: party_size,
-            duration: duration,
+            user_id: userId,
+            venue_id: venueId,
+            reservation_datetime: reservationDatetime,
+            party_size: partySize,
+            duration,
         }),
     });
     const data = await res.json();
@@ -80,7 +80,7 @@ export const createReservation = reservationData => async dispatch => {
 }
 
 export const updateReservation = reservationData => async dispatch => {
-    const { userId, venueId, reservation_datetime, party_size, duration, reservationId } = reservationData
+    const { userId, venueId, reservationDatetime, partySize, duration, reservationId } = reservationData
     const res = await fetch(`/api/reservations/${reservationId}/`, {
         method: 'PUT',
         headers: {
@@ -89,9 +89,9 @@ export const updateReservation = reservationData => async dispatch => {
         body: JSON.stringify({
             user_id: userId,
             venue_id: venueId,
-            reservation_datetime: reservation_datetime,
-            party_size: party_size,
-            duration: duration,
+            reservation_datetime: reservationDatetime,
+            party_size: partySize,
+            duration,
         }),
     });
     const data = await res.json();
