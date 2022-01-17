@@ -19,7 +19,7 @@ function ReservationForm({ venue_id }) {
 
     const reservation = async (e) => {
         e.preventDefault();
-        dispatch(createReservation({ user_id: sessionUser.id, venue_id, reservation_datetime: dateTime, party_size: Number(people), duration: Number(duration) }))
+        dispatch(createReservation({ userId: sessionUser.id, venueId, reservationDatetime: dateTime, partySize: Number(people), duration: Number(duration) }))
         window.confirm(`Your reservation has been made for ${dateTime} for ${people} couples!`)
         history.push("/")
     }
