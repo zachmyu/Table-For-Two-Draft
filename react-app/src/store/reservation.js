@@ -20,14 +20,14 @@ const addReservation = reservation => ({
     payload: reservation
 });
 
-const changeReservation = reservation => ({
+const changeReservation = reservationId => ({
     type: UPDATE_RESERVATION,
-    payload: reservation
+    payload: reservationId
 });
 
-const removeReservation = reservation_id => ({
+const removeReservation = reservationId => ({
     type: DELETE_RESERVATION,
-    payload: reservation_id
+    payload: reservationId
 });
 
 
@@ -80,15 +80,15 @@ export const createReservation = reservationData => async dispatch => {
 }
 
 export const updateReservation = reservationData => async dispatch => {
-    const { user_id, venue_id, reservation_datetime, party_size, duration, reservationId } = reservationData
+    const { userId, venueId, reservation_datetime, party_size, duration, reservationId } = reservationData
     const res = await fetch(`/api/reservations/${reservationId}/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            user_id: user_id,
-            venue_id: venue_id,
+            user_id: userId,
+            venue_id: venueId,
             reservation_datetime: reservation_datetime,
             party_size: party_size,
             duration: duration,
