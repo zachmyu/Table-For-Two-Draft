@@ -1,5 +1,4 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,7 +20,7 @@ function ReservationEdit({ reservation, venue_id }) {
 
     const reservationUpdate = async (e) => {
         e.preventDefault();
-        dispatch(updateReservation({ userId: sessionUser.id, venueId: reservation.venue_id, reservation_datetime: dateTime, party_size: Number(people), duration: Number(duration), reservationId: reservation.id }))
+        dispatch(updateReservation({ userId: sessionUser.id, venueId: reservation.venue.id, reservationDatetime: dateTime, partySize: Number(people), duration: Number(duration), reservationId: reservation.id }))
         window.confirm(`Your reservation has been updated for ${dateTime} for ${people} couples!`)
         return setShowModal(false)
     }
