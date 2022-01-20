@@ -66,7 +66,7 @@ export const getAllVenueReviews = venueId => async dispatch => {
 
 export const createReview = reviewData => async dispatch => {
     const { userId, venueId, title, body, rating } = reviewData
-    const res = await fetch(`/api/reviews/venues/${venueId}/`, {
+    const res = await fetch(`/api/reviews/venues/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
