@@ -7,25 +7,25 @@ from app.forms import ReservationForm
 reservation_routes = Blueprint('reservations', __name__)
 
 
-# Read One User Reservation
+# READ ONE - Reservation
 @reservation_routes.route('/<int:id>/')
 def reservation(id):
     reservation = Reservation.query.get(id)
     return reservation.to_dict()
 
 
-# Read All User Reservations
-@reservation_routes.route('/user/<int:id>/')
+# READ ALL: Query by Users - Reservations
+@reservation_routes.route('/user/<int:user_id>/')
 @login_required
-def user_reservation(id):
-    reservations = Reservation.query.filter_by(user_id=id).all()
+def reservations_of_users(user_id):
+    reservations = Reservation.query.filter_by(user_id=user_id).all()
     return {reservation.id: reservation.to_dict() for reservation in reservations}
 
 
-# Create User Reservation
+# CREATE - Reservation
 @reservation_routes.route('/create/', methods=['POST'])
 @login_required
-def postReservation():
+def new_Reservation():
     request_json = request.get_json()
     reservation = Reservation(
         user_id=request_json['user_id'],
@@ -36,31 +36,29 @@ def postReservation():
     )
     db.session.add(reservation)
     db.session.commit()
-    return request.get_json()
+    return {'reservation': reservation.to_dict()}
 
 
-# Edit User Reservation
+# UPDATE - Reservation
 @reservation_routes.route('/<int:id>/', methods=['PUT'])
 @login_required
-def updateReservation(id):
+def reservation_edit(id):
     form = ReservationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        edit_reservation = Reservation.query.get(id)
-        form.populate_obj(edit_reservation)
+        reservation_to_edit = Reservation.query.get(id)
+        form.populate_obj(reservation_to_edit)
         db.session.commit()
-        return edit_reservation.to_dict()
+        return reservation_to_edit.to_dict()
+    print("Unable to validate: ", form.errors)
     return {'errors': form.errors}
 
 
-# Delete User Reservation
+# DELETE - Reservation
 @reservation_routes.route('/<int:id>/', methods=['DELETE'])
 @login_required
-def delete_reservation_by_id(id):
+def reservation_delete(id):
     delete_reservation = Reservation.query.get(id)
-    # deleted_reservation = delete_reservation.to_dict()
-    print("reservation found")
     db.session.delete(delete_reservation)
     db.session.commit()
-    # return {"Reservation Deleted", deleted_reservation}
     return "Reservation Deleted"
