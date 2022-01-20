@@ -91,8 +91,9 @@ export const updateReservation = reservationData => async dispatch => {
             venue_id: venueId,
             reservation_datetime: reservationDatetime,
             party_size: partySize,
-            duration,
+            duration
         }),
+
     });
     const data = await res.json();
 
@@ -132,12 +133,14 @@ const menu_itemsReducer = (state = initialState, action) => {
 
         case CREATE_RESERVATION:
             newState = Object.assign({}, state);
-            newState[action.payload.id] = action.payload;
+            newState[action.payload.reservation.id] = action.payload.reservation;
             return newState;
 
         case UPDATE_RESERVATION:
-            newState = { ...state };
-            newState.current = action.payload;
+            newState = {
+                ...state,
+                [action.payload.id]: action.payload
+            };
             return newState;
 
         case DELETE_RESERVATION:
