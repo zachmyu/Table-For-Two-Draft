@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { getAllVenues } from "../../store/venue"
 // import DropDown from "../DropDown";
-// import Calendar from "../Calendar";
 // import backgroundPic from "/images/splash_background.jpg"
 import "./HomePage.css";
 
@@ -32,7 +31,6 @@ function HomePage({ setResults }) {
             <div className="splash-container" style={{ backgroundImage: `url("/images/splash_background.jpg")` }}>
                 <h1 id="slogan">A date for any occasion</h1>
                 <div className="splash-booking-container" >
-                    {/* <Calendar /> */}
                     {/* <DropDown /> */}
                     <form onSubmit={handleClick} className="splash-booking-form" >
                         <input
