@@ -18,6 +18,11 @@
 	align-items: center;
 }
 
+.splash-booking-form {
+	display: flex;
+	align-items: center;
+}
+
 #slogan {
 	color: white;
 	font-size: 60px;
@@ -44,8 +49,9 @@
 
 #splash-search {
 	height: 34px;
+	width: 20vw;
 	margin: 0 5px;
-	border-radius: 5px;
+	border-radius: 5px 0 0 5px;
 }
 
 .splash-button {
