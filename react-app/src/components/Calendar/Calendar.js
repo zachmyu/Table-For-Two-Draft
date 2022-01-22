@@ -3,11 +3,13 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TextField from '@mui/material/TextField';
 import DateTimePicker from '@mui/lab/DateTimePicker';
+import "./Calendar.css"
 
 function Calendar({ dateTime, setDateTime }) {
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateTimePicker
+                className="test"
                 renderInput={(props) => <TextField {...props} />}
                 label="Reservation Date & Time"
                 value={dateTime}
