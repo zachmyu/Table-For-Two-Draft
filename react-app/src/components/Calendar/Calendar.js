@@ -3,7 +3,6 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TextField from '@mui/material/TextField';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import "./Calendar.css"
 
 function Calendar({ dateTime, setDateTime }) {
     return (
