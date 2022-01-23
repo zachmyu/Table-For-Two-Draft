@@ -2,8 +2,6 @@ import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { getAllVenues } from "../../store/venue"
-// import DropDown from "../DropDown";
-// import backgroundPic from "/images/splash_background.jpg"
 import "./HomePage.css";
 
 function HomePage({ setResults }) {
@@ -17,22 +15,27 @@ function HomePage({ setResults }) {
         dispatch(getAllVenues())
     }, [dispatch])
 
-    let venueForSearchBar = []
+    // let foundVenues = []
     const handleClick = () => {
-        const venueFilter = venueArray.filter((venue) => venue.name.toLowerCase().includes(search.toLowerCase()))
-        venueForSearchBar.push(venueFilter)
-        setResults(venueForSearchBar)
+        const venueFilter = venueArray.filter((venue) => {
+            return venue.name.toLowerCase().includes(search.toLowerCase())
+        })
+        // foundVenues.push(venueFilter)
+        setResults(venueFilter)
         setSearch("")
+        // console.log("fffooooouuunnnndddd", results)
         return history.push("/search")
     }
 
+
     return (
         <>
-            <div className="splash-container" style={{ backgroundImage: `url("/images/splash_background.jpg")` }}>
+            <div className="splash-container" style={{
+                backgroundImage: `url("/images/splash_background.jpg")`
+            }}>
                 <h1 id="slogan">A date for any occasion</h1>
-                <div className="splash-booking-container" >
-                    {/* <DropDown /> */}
-                    <form onSubmit={handleClick} className="splash-booking-form" >
+                <div className="splash-search-container" >
+                    <form onSubmit={handleClick} className="splash-search-form">
                         <input
                             name="search"
                             id="splash-search"
@@ -48,20 +51,27 @@ function HomePage({ setResults }) {
             </div>
             <div className="splash-venues-container">
                 {venueArray.map(venue => (
-                    <a href={`/venues/${venue.id}`} key={venue.id} id={venue.id}>
+                    <a href={`/venues/${venue.id}`} key={venue.id}>
                         <div className="splash-venue-card" >
-                            <img src={venue.image_url} className="splash-venue-pix" alt="{venue.name}" />
+                            <img src={venue.image_url}
+                                className="splash-venue-pix"
+                                alt="{venue.name}" />
                             <div className="splash-venue-description">
-                                <div className="splash-venue-title"><h3>{venue.name}</h3></div>
-                                <div className="splash-venue-location">{venue.city} {venue.state}</div>
-                                <div className="splash-venue-hours">Hours: {venue.operation_hours}</div>
+                                <div className="splash-venue-title">
+                                    <h3>{venue.name}</h3>
+                                </div>
+                                <div className="splash-venue-location">
+                                    {venue.city} {venue.state}
+                                </div>
+                                <div className="splash-venue-hours">
+                                    Hours: {venue.operation_hours}
+                                </div>
                             </div>
                         </div>
                     </a>
                 ))}
             </div>
         </>
-
     );
 }
 
