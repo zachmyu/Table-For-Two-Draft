@@ -1,5 +1,4 @@
 .splash-container {
-	/* background-image: url("splash_background.jpg"); */
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -11,14 +10,14 @@
 	background-repeat: no-repeat;
 }
 
-.splash-booking-container {
+.splash-search-container {
 	display: flex;
 	justify-content: center;
 	width: 900px;
 	align-items: center;
 }
 
-.splash-booking-form {
+.splash-search-form {
 	display: flex;
 	align-items: center;
 }
@@ -49,21 +48,22 @@
 
 #splash-search {
 	height: 34px;
-	width: 20vw;
-	margin: 0 5px;
+	width: 30vw;
+	/* margin: 0 5px; */
 	border-radius: 5px 0 0 5px;
 }
 
 .splash-button {
-	width: 180px;
+	width: 140px;
 	height: 40px;
 	color: #2d333f;
 	border-radius: 5px;
 	background-color: #009999;
 	font-size: large;
 	font-weight: bold;
-	margin: 0 5px;
-	margin-top: 2px;
+	border-radius: 0 5px 5px 0;
+	margin-top: 2.5px;
+	/* margin: 0 5px; */
 }
 
 .splash-button:hover {
@@ -118,7 +118,7 @@
 		font-size: 30px;
 	}
 
-	.splash-booking-container {
+	.splash-search-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -126,10 +126,22 @@
 		align-items: center;
 	}
 
-	.splash-booking-form {
+	.splash-search-form {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+	}
+
+	#splash-search {
+		width: 35vw;
+		margin: 5px;
+		border-radius: 5px;
+	}
+
+	.splash-button {
+		width: 36vw;
+		border-radius: 5px;
+		margin: 5px;
 	}
 }
