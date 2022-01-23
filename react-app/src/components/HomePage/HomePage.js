@@ -15,15 +15,12 @@ function HomePage({ setResults }) {
         dispatch(getAllVenues())
     }, [dispatch])
 
-    // let foundVenues = []
     const handleClick = () => {
         const venueFilter = venueArray.filter((venue) => {
             return venue.name.toLowerCase().includes(search.toLowerCase())
         })
-        // foundVenues.push(venueFilter)
         setResults(venueFilter)
         setSearch("")
-        // console.log("fffooooouuunnnndddd", results)
         return history.push("/search")
     }
 
