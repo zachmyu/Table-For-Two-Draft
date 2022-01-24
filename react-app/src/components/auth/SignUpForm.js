@@ -25,7 +25,8 @@ function SignUpFormModal() {
             const data = await dispatch(signUp(first_name, last_name, username, email, password, profile_image_url));
 
             if (data?.errors) {
-                setErrors(data?.errors)
+                // setErrors(data?.errors)
+                console.log(data)
             }
         }
     };

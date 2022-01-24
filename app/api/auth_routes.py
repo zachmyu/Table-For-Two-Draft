@@ -57,6 +57,7 @@ def logout():
 
 @auth_routes.route('/signup/', methods=['POST'])
 def sign_up():
+    print("Hello backend here")
     """
     Creates a new user and logs them in
     """
@@ -64,17 +65,20 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if "image" not in request.files:
+        print("no image")
         return {'errors': ['image required']}, 400
 
     image = request.files["image"]
 
     if not allowed_file(image.filename):
+        print("wrong filename")
         return {"errors": ["file type not permitted"]}, 400
 
     image.filename = get_unique_filename(image.filename)
     upload = upload_file_to_s3(image)
 
     if "url" not in upload:
+        print("no url")
         return {'errors': [upload]}, 400
 
     url = upload["url"]
